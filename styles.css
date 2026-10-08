@@ -2471,3 +2471,16 @@ details.more > .ds-grid { margin-top: 20px; }
   .pstep .pn { width: 40px; height: 40px; border-radius: 12px; font-size: 1.1rem; }
   .pstep > details.code-more { grid-column: 1 / -1; }
 }
+
+/* 팀: 함께 해 온 프로젝트 */
+.ba-projects { margin-top: 20px; padding: clamp(22px, 2.8vw, 34px); border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ba-projects .ba-together-title svg { width: 24px; height: 24px; color: var(--primary); }
+.ba-projects-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.ba-projects-list li { display: grid; gap: 8px; align-content: start; }
+.ba-proj-tag { justify-self: start; font-size: .9rem; font-weight: 800; padding: 4px 10px; border-radius: 999px; background: var(--paper-2); color: var(--text-sub); }
+.ba-projects-list h4 { font-size: 1.2rem; text-wrap: balance; }
+.ba-projects-list p { font-size: 1.05rem; color: var(--text); }
+.ba-proj-take { display: flex; gap: 8px; align-items: flex-start; font-weight: 700; color: var(--primary-ink) !important; }
+.ba-proj-take svg { width: 18px; height: 18px; flex: none; margin-top: .2em; color: var(--primary); }
+@media (max-width: 920.98px) { .ba-projects-list { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
+.info-box .info-more { display: block; margin-top: 6px; }
