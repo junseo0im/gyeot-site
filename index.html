@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="ko" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>곁 GYEOT — 광고 앞에서 스스로 판단하도록 돕는 AI 소비 동행</title>
+<meta name="description" content="고령층이 온라인 건강식품 광고 앞에서 식약처 공식 근거로 스스로 판단하도록 돕는 AI 소비 동행 서비스, 곁(GYEOT)을 소개해요.">
+<meta property="og:title" content="곁 GYEOT — 광고 앞에서 스스로 판단하도록 돕는 AI 소비 동행">
+<meta property="og:description" content="AI가 대신 결정하지 않아요. 스스로 판단할 수 있도록 곁에서 도와요.">
+<meta property="og:type" content="website">
+<!-- 링크 미리보기 그림은 절대 주소여야 해요. GitHub Pages(github.com/junseo0im/gyeot) 배포 주소 기준이고, 다른 곳에 올리면 이 주소를 바꿔요 -->
+<meta property="og:url" content="https://junseo0im.github.io/gyeot-site/">
+<meta property="og:image" content="https://junseo0im.github.io/gyeot-site/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="곁 GYEOT 서비스 소개. 툇마루에 앉은 가상 인물과 결과 카드 그림">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://junseo0im.github.io/gyeot-site/og.png">
+<meta name="theme-color" content="#FAF6F0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231F4FA3'/%3E%3Ccircle cx='15' cy='17' r='4.5' fill='%23FAF6F0'/%3E%3Ccircle cx='25.5' cy='17' r='4.5' fill='%23F8E7D8'/%3E%3Cpath d='M9 29h22' stroke='%23FAF6F0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="styles.css">
+<!-- no-js는 main.js가 끝까지 돌았을 때만 떼요. main.js를 못 받거나 도중에 멈추면 모든 내용이 그대로 보여요 -->
+<script>if(/[?&]static\b/.test(location.search))document.documentElement.classList.add('is-static')</script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<!-- 로고: 툇마루에 나란히 앉은 두 사람 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 40 40">
+    <rect width="40" height="40" rx="12" fill="#1F4FA3"/>
+    <circle cx="15" cy="17" r="4.5" fill="#FAF6F0"/>
+    <circle cx="25.5" cy="17" r="4.5" fill="#F8E7D8"/>
+    <path d="M9 29h22" stroke="#FAF6F0" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- 곁 일러스트 스프라이트 (플랫 기하) · 모든 인물과 제품은 가상이에요. 0 크기와 position:absolute로만 숨겨요. display 속성으로 감추면 크롬이 안의 clipPath를 버려요. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="il-oksun-clip"><rect width="160" height="160" rx="48"/></clipPath>
+    <clipPath id="il-daughter-clip"><rect width="160" height="160" rx="48"/></clipPath>
+    <clipPath id="il-scene-clip"><rect width="640" height="400" rx="28"/></clipPath>
+    <clipPath id="il-teamai-lens"><circle cx="40" cy="67" r="11.5"/></clipPath>
+  </defs>
+  <!-- 가상 인물 정옥순 님(74세) 초상이에요. 흰 파마머리에 둥근 안경을 쓰고, 감빛 카디건 차림으로 휴대폰을 들고 있어요. -->
+  <symbol id="il-oksun" viewBox="0 0 160 160">
+    <rect width="160" height="160" rx="48" fill="#F8E7D8"/>
+    <g clip-path="url(#il-oksun-clip)">
+    <g fill="#A9A49C"><ellipse cx="80.2" cy="50.7" rx="28.6" ry="24.6"/><circle cx="56" cy="60.5" r="11.2"/><circle cx="54.8" cy="49.9" r="11.2"/><circle cx="59.4" cy="39.3" r="11.2"/><circle cx="67.8" cy="31.7" r="11.2"/><circle cx="80.2" cy="28.5" r="11.2"/><circle cx="91.8" cy="31.7" r="11"/><circle cx="100.2" cy="39.3" r="10.6"/><circle cx="103.8" cy="49.9" r="10.2"/><circle cx="104.6" cy="62.6" r="8.8"/><circle cx="56" cy="63.4" r="8.4"/></g><g fill="#E9E6E1"><ellipse cx="79.4" cy="49.6" rx="25" ry="21"/><circle cx="55.2" cy="59.4" r="7.6"/><circle cx="54" cy="48.8" r="7.6"/><circle cx="58.6" cy="38.2" r="7.6"/><circle cx="67" cy="30.6" r="7.6"/><circle cx="79.4" cy="27.4" r="7.6"/><circle cx="91" cy="30.6" r="7.4"/><circle cx="99.4" cy="38.2" r="7"/><circle cx="103" cy="48.8" r="6.6"/></g>
+    <path d="M70.5 84H89.5V104C89.5 110 85 114 80 114C75 114 70.5 110 70.5 104Z" fill="#E3B896"/>
+    <path d="M70.5 86C75 92.5 85 92.5 89.5 86V96C85 99 75 99 70.5 96Z" fill="#C99472"/>
+    <path d="M6 162C8 133 22 117 47 110.5C56 108 62.5 105.5 66.5 102H93.5C97.5 105.5 104 108 113 110.5C138 117 152 133 154 162Z" fill="#B4581F"/>
+    <path d="M154 162C152 133 138 117 113 110.5L116.5 111.5C131 121 137.5 139 137.5 162Z" fill="#974A1C"/>
+    <path d="M64.5 103.5C69 110.5 74.5 113 80 113C85.5 113 91 110.5 95.5 103.5L84 162H76Z" fill="#FAF6F0"/>
+    <g fill="#974A1C"><path d="M60.5 104.5L64.5 103.5L76 162H71Z"/><path d="M99.5 104.5L95.5 103.5L84 162H89Z"/></g>
+    <g fill="#E6DED2" transform="translate(0 1.8)"><path d="M62.6 102.4C67.6 109.4 73 112.8 79.6 113.4L69.4 120.6C66.6 115.2 64.2 109.2 62.6 102.4Z"/><path d="M97.4 102.4C92.4 109.4 87 112.8 80.4 113.4L90.6 120.6C93.4 115.2 95.8 109.2 97.4 102.4Z"/></g>
+    <g fill="#FFFFFF"><path d="M62.6 102.4C67.6 109.4 73 112.8 79.6 113.4L69.4 120.6C66.6 115.2 64.2 109.2 62.6 102.4Z"/><path d="M97.4 102.4C92.4 109.4 87 112.8 80.4 113.4L90.6 120.6C93.4 115.2 95.8 109.2 97.4 102.4Z"/></g>
+    <g fill="#FAF6F0"><circle cx="67.4" cy="130" r="1.8"/><circle cx="70" cy="143.5" r="1.8"/><circle cx="72.6" cy="157" r="1.8"/></g>
+    <g fill="#E3B896"><ellipse cx="55.5" cy="69" rx="4.6" ry="6.8"/><ellipse cx="104.5" cy="69" rx="4.6" ry="6.8"/></g><path d="M80 37C96 37 104.5 49 104.5 63.5C104.5 80 95 94.5 80 94.5C65 94.5 55.5 80 55.5 63.5C55.5 49 64 37 80 37Z" fill="#E3B896"/><g fill="#FFFFFF"><circle cx="54.7" cy="74.6" r="1.9"/><circle cx="105.3" cy="74.6" r="1.9"/></g><g fill="#E9E6E1"><circle cx="61.5" cy="47.5" r="6.5"/><circle cx="70" cy="42.5" r="8"/><circle cx="80" cy="41" r="8.5"/><circle cx="90" cy="42.5" r="8"/><circle cx="98.5" cy="47.5" r="6.5"/><circle cx="57" cy="57" r="5.5"/><circle cx="103" cy="57" r="5.5"/></g><g fill="none" stroke="#A9A49C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M64.6 56Q70.3 53.4 75.8 55.4"/><path d="M84.2 55.4Q89.7 53.4 95.4 56"/></g><g fill="none" stroke="#C99472" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M71.4 81.2Q70 83.4 70.8 85.6"/><path d="M88.6 81.2Q90 83.4 89.2 85.6"/></g><g fill="#2B2F33"><ellipse cx="70.5" cy="68.6" rx="2.3" ry="2.6"/><ellipse cx="89.5" cy="68.6" rx="2.3" ry="2.6"/></g><g fill="none" stroke="#2B2F33" stroke-width="1.49" stroke-linecap="round" stroke-linejoin="round"><path d="M67.2 66.2Q70.5 64.6 73.8 66.2"/><path d="M86.2 66.2Q89.5 64.6 92.8 66.2"/></g><g fill="none" stroke="#C99472" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M81 72.5Q83 78.6 79.2 80"/></g><g fill="none" stroke="#B4581F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M75.2 85.6Q80 88.8 84.8 85.6"/></g><g fill="none" stroke="#2B2F33" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="70.5" cy="68" r="7.3"/><circle cx="89.5" cy="68" r="7.3"/><path d="M77.9 67.4Q80 65.6 82.1 67.4"/><path d="M63.2 66.8L56.8 65.4"/><path d="M96.8 66.8L103.2 65.4"/></g>
+    <g transform="rotate(-8 111 134)"><g fill="#E3B896"><rect x="119" y="119.2" width="8.8" height="5.8" rx="2.9"/><rect x="119" y="126" width="9.4" height="5.8" rx="2.9"/><rect x="119" y="132.8" width="8.8" height="5.8" rx="2.9"/></g><rect x="101.5" y="128" width="22" height="40" rx="10" fill="#E3B896"/><rect x="98" y="108" width="26" height="48" rx="5.5" fill="#2B2F33"/><rect x="100.3" y="110.3" width="21.4" height="43.4" rx="3.6" fill="#FFFFFF"/><circle cx="105" cy="116.4" r="2.3" fill="#1F4FA3"/><circle cx="110.6" cy="116.4" r="2.3" fill="#D9772B"/><rect x="102.8" y="120.4" width="10.4" height="2" rx="1" fill="#1F4FA3"/><rect x="102.8" y="125.2" width="16.4" height="5" rx="2" fill="#E7EEF9"/><rect x="102.8" y="132.2" width="16.4" height="5" rx="2" fill="#F8E7D8"/><rect x="-3.3" y="-9.5" width="6.6" height="19" rx="3.3" fill="#C99472" transform="translate(103.6 140.4) rotate(14)"/><rect x="-3.3" y="-9.5" width="6.6" height="19" rx="3.3" fill="#E3B896" transform="translate(102.4 139.8) rotate(14)"/></g>
+    </g>
+  </symbol>
+  <!-- 가상 인물 정옥순 님의 딸(47세) 초상이에요. 어깨에 닿는 짙은 단발머리에 남색 재킷을 입고 출근 가방을 메고 있어요. -->
+  <symbol id="il-daughter" viewBox="0 0 160 160">
+    <rect width="160" height="160" rx="48" fill="#E7EEF9"/>
+    <g clip-path="url(#il-daughter-clip)">
+    <path d="M80 28.5C98.2 28.5 109.8 41 109.8 60C109.8 71.6 110.4 82.6 111.4 91C112.2 97.4 109.6 100.6 105.2 100.6H54.8C50.4 100.6 47.8 97.4 48.6 91C49.6 82.6 50.2 71.6 50.2 60C50.2 41 61.8 28.5 80 28.5Z" fill="#3A2E28"/>
+    <path d="M63.6 76H96.4C97.6 76 98.2 77 98 78.4C97.4 85 96.8 92 96.4 97.6C96.2 99.8 95 101 93 101H67C65 101 63.8 99.8 63.6 97.6C63.2 92 62.6 85 62 78.4C61.8 77 62.4 76 63.6 76Z" fill="#1A1C1E"/>
+    <path d="M8 162C9 134 21 117 44 110C55 106.5 62 103.5 66.5 99.5H93.5C98 103.5 105 106.5 116 110C139 117 151 134 152 162Z" fill="#1F4FA3"/>
+    <path d="M152 162C151 134 139 117 116 110L118.5 110.8C132 120 138 138 138 162Z" fill="#173C7D"/>
+    <path d="M71 84H89V104C89 109 85 112 80 112C75 112 71 109 71 104Z" fill="#F0D2B8"/>
+    <path d="M71 86C75.5 92.5 84.5 92.5 89 86V95C84.5 98.5 75.5 98.5 71 95Z" fill="#E3B896"/>
+    <path d="M64 100C68.5 105 74 107.5 80 107.5C86 107.5 91.5 105 96 100L89 162H71Z" fill="#FAF6F0"/>
+    <path d="M65.6 101.4C70 105.8 74.8 107.5 80 107.5C85.2 107.5 90 105.8 94.4 101.4L95.4 104.6C90.6 109.2 85.6 110.8 80 110.8C74.4 110.8 69.4 109.2 64.6 104.6Z" fill="#E6DED2"/>
+    <path d="M43 112.2C47 110.6 50.6 109.6 53.6 109L57.4 162H50.4L46.4 121C45.8 116.8 44.6 114 43 112.2Z" fill="#C29A6B"/>
+    <path d="M53.6 109C55.6 108.6 57.2 108.6 58.4 109L61.8 162H57.4Z" fill="#A27B52"/>
+    <rect x="47.6" y="133" width="11" height="6.4" rx="2" fill="#F3ECE2"/>
+    <g fill="#173C7D"><path d="M64 100L72 162H63L51.5 117Z"/><path d="M96 100L88 162H97L108.5 117Z"/></g>
+    <ellipse cx="56.8" cy="68.5" rx="4.4" ry="6.6" fill="#F0D2B8"/><ellipse cx="57.3" cy="69" rx="1.8" ry="3.4" fill="#E3B896"/>
+    <path d="M80 37.5C95.5 37.5 103.5 49.5 103.5 64C103.5 80 94.5 93.5 80 93.5C65.5 93.5 56.5 80 56.5 64C56.5 49.5 64.5 37.5 80 37.5Z" fill="#F0D2B8"/>
+    <path d="M56.7 61.2C57.6 51.2 65.6 45.2 76.2 45.2C88.4 45.2 97.8 52 101.2 62.6C102.6 67 103.4 72 103.8 76.4H110.2L109.8 60C109.8 41 98.2 28.5 80 28.5C61.8 28.5 50.2 41 50.2 60L50.3 61.2Z" fill="#3A2E28"/>
+    <path d="M70.5 31.2C67.4 35 65.6 40.4 65.4 46.6C64.6 41 65.6 35.4 68.2 31.8Z" fill="#1A1C1E"/>
+    <circle cx="55.9" cy="74.2" r="1.8" fill="#FFFFFF"/>
+    <g fill="none" stroke="#3A2E28" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M64.8 59.4Q70.3 56.6 75.8 58.6"/><path d="M84.4 58.6Q89 56.4 93.6 58.2"/></g>
+    <g fill="#2B2F33"><ellipse cx="70.5" cy="67.8" rx="2.3" ry="2.6"/><ellipse cx="89.5" cy="67.8" rx="2.3" ry="2.6"/></g>
+    <g fill="none" stroke="#2B2F33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M67.2 65.4Q70.5 63.8 73.8 65.4"/><path d="M86.2 65.4Q89.5 63.8 92.8 65.4"/></g>
+    <g fill="none" stroke="#E3B896" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M81 72.5Q83 78.6 79.2 80"/></g>
+    <g fill="none" stroke="#B4581F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M75 85.2Q80 88.8 85 85.2"/></g>
+    </g>
+  </symbol>
+  <!-- 툇마루 방석에 앉아 휴대폰을 보는 정옥순 님(가상 인물) 곁에, 곁의 결과 카드가 같은 방석에 나란히 놓여 있어요. 감나무 그림자가 창호지에 비치는 조용한 오후예요. -->
+  <symbol id="il-scene" viewBox="0 0 640 400">
+    <g clip-path="url(#il-scene-clip)">
+    <rect width="640" height="400" fill="#F3ECE2"/>
+    <!-- 창호문 -->
+    <rect x="78" y="56" width="484" height="136" fill="#D9B88F"/>
+    <rect x="85" y="63" width="231.5" height="122" fill="#FAF6F0"/>
+    <g fill="#D9B88F"><rect x="102.79" y="63" width="3" height="27"/><rect x="122.08" y="63" width="3" height="27"/><rect x="141.38" y="63" width="3" height="27"/><rect x="160.67" y="63" width="3" height="27"/><rect x="179.96" y="63" width="3" height="27"/><rect x="199.25" y="63" width="3" height="27"/><rect x="218.54" y="63" width="3" height="27"/><rect x="237.83" y="63" width="3" height="27"/><rect x="257.12" y="63" width="3" height="27"/><rect x="276.42" y="63" width="3" height="27"/><rect x="295.71" y="63" width="3" height="27"/><rect x="85" y="90" width="231.5" height="5"/></g>
+    <rect x="323.5" y="63" width="231.5" height="122" fill="#FAF6F0"/>
+    <g fill="#D9B88F"><rect x="341.29" y="63" width="3" height="27"/><rect x="360.58" y="63" width="3" height="27"/><rect x="379.88" y="63" width="3" height="27"/><rect x="399.17" y="63" width="3" height="27"/><rect x="418.46" y="63" width="3" height="27"/><rect x="437.75" y="63" width="3" height="27"/><rect x="457.04" y="63" width="3" height="27"/><rect x="476.33" y="63" width="3" height="27"/><rect x="495.62" y="63" width="3" height="27"/><rect x="514.92" y="63" width="3" height="27"/><rect x="534.21" y="63" width="3" height="27"/><rect x="323.5" y="90" width="231.5" height="5"/></g>
+    <!-- 머름 -->
+    <rect x="78" y="192" width="484" height="54" fill="#C29A6B"/>
+    <g fill="#D9B88F"><rect x="88" y="200" width="106" height="38" rx="3"/><rect x="204" y="200" width="106" height="38" rx="3"/><rect x="320" y="200" width="106" height="38" rx="3"/><rect x="436" y="200" width="106" height="38" rx="3"/></g>
+    <!-- 처마 그림자, 창호지에 비친 감나무 그림자 -->
+    <rect y="44" width="640" height="56" fill="#A27B52" fill-opacity=".1"/>
+    <g transform="translate(86 78)" fill="#A27B52" opacity=".14"><path d="M-8 30C30 34 72 46 120 72C126 75.5 128 80 124 81C78 58 34 46 -8 42Z"/><g><path d="M51.5 52L55.5 53L55 58.6H52Z"/><path d="M95.5 64.5L99.5 66.6L99 72.2H96Z"/><path d="M119.6 76.4L123.4 78.6L125 84.6H122.2Z"/></g><g transform="translate(8 36) rotate(-24)"><path d="M0 0C8.5 -9.52 25.5 -9.52 34 0C25.5 9.52 8.5 9.52 0 0Z"/></g><g transform="translate(68 49) rotate(-60)"><path d="M0 0C7.5 -8.4 22.5 -8.4 30 0C22.5 8.4 7.5 8.4 0 0Z"/></g><g transform="translate(84 57) rotate(26)"><path d="M0 0C7 -7.84 21 -7.84 28 0C21 7.84 7 7.84 0 0Z"/></g><g transform="translate(124 80) rotate(12)"><path d="M0 0C7 -7.84 21 -7.84 28 0C21 7.84 7 7.84 0 0Z"/></g></g>
+    <!-- 마루: 앞뒤로 모이는 귀틀이 깊이를 만들어요 -->
+    <rect y="246" width="640" height="36" fill="#D9B88F"/>
+    <g fill="#C29A6B"><rect y="256" width="640" height="1.6"/><rect y="268" width="640" height="1.8"/><path d="M4.4 282H7.6L66.81 246H64.61Z"/><path d="M140.4 282H143.6L172.95 246H170.75Z"/><path d="M412.4 282H415.6L385.25 246H383.05Z"/><path d="M548.4 282H551.6L491.39 246H489.19Z"/><path d="M638.66 263.51H640L597.54 246H595.34Z"/></g>
+    <rect y="282" width="640" height="15" fill="#C29A6B"/>
+    <rect y="297" width="640" height="41" fill="#A27B52"/>
+    <g fill="#C29A6B"><rect x="122" y="297" width="9" height="41"/><rect x="496" y="297" width="9" height="41"/></g>
+    <rect y="338" width="640" height="62" fill="#E6DED2"/>
+    <!-- 주춧돌과 댓돌 -->
+    <path d="M26 334H58C61 334 64 337 64 340V345C64 348 61 351 58 351H26C23 351 20 348 20 345V340C20 337 23 334 26 334Z" fill="#A9A49C"/><path d="M26 334H58C61 334 64 337 64 340V342H20V340C20 337 23 334 26 334Z" fill="#CFCBC4"/><path d="M582 334H614C617 334 620 337 620 340V345C620 348 617 351 614 351H582C579 351 576 348 576 345V340C576 337 579 334 582 334Z" fill="#A9A49C"/><path d="M582 334H614C617 334 620 337 620 340V342H576V340C576 337 579 334 582 334Z" fill="#CFCBC4"/>
+    <path d="M208 343H348C351 343 354 346 354 349V364C354 367 351 370 348 370H208C205 370 202 367 202 364V349C202 346 205 343 208 343Z" fill="#A9A49C"/><path d="M208 343H348C351 343 354 346 354 349V353H202V349C202 346 205 343 208 343Z" fill="#CFCBC4"/>
+    <!-- 기둥 -->
+    <rect x="29" y="42" width="26" height="298" fill="#C29A6B"/><rect x="46" y="42" width="9" height="298" fill="#A27B52"/>
+    <rect x="585" y="42" width="26" height="298" fill="#C29A6B"/><rect x="602" y="42" width="9" height="298" fill="#A27B52"/>
+    <!-- 두 방석: 나란히 앉은 두 자리 -->
+    <g fill="#C29A6B"><rect x="224" y="271.5" width="116" height="4" rx="2"/><rect x="348" y="271.5" width="116" height="4" rx="2"/></g>
+    <rect x="222" y="257" width="112" height="16" rx="6" fill="#173C7D"/><rect x="222" y="254" width="112" height="9" rx="4.5" fill="#1F4FA3"/>
+    <rect x="346" y="257" width="112" height="16" rx="6" fill="#173C7D"/><rect x="346" y="254" width="112" height="9" rx="4.5" fill="#1F4FA3"/>
+    <!-- 찻잔과 김 -->
+    <ellipse cx="186" cy="272.2" rx="19" ry="4" fill="#C29A6B"/>
+    <ellipse cx="182" cy="271.4" rx="17" ry="4.4" fill="#E6DED2"/><ellipse cx="182" cy="270" rx="17" ry="3.6" fill="#FFFFFF"/>
+    <path d="M170 254H194L191 266C190.4 268.6 188.2 270 185.6 270H178.4C175.8 270 173.6 268.6 173 266Z" fill="#FFFFFF"/>
+    <path d="M186 254H194L191 266C190.4 268.6 188.2 270 185.6 270H184C186.4 265 187 259 186 254Z" fill="#E6DED2"/>
+    <ellipse cx="182" cy="254" rx="12" ry="3.2" fill="#FFFFFF"/><ellipse cx="182" cy="254.4" rx="9.8" ry="2.2" fill="#C29A6B"/>
+    <g opacity=".75"><g fill="none" stroke="#FAF6F0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M179 249C175 244 183 241 179 235"/><path d="M186.5 248C182.5 243 190.5 240 186.5 234"/></g></g>
+    <!-- 곁 결과 카드: 자기 방석에 앉아 옥순 님 쪽으로 살짝 기울어요 -->
+    <rect x="371" y="260" width="66" height="5" rx="2.5" fill="#173C7D"/>
+    <g transform="rotate(-5 402 263)">
+    <rect x="376" y="193.5" width="58" height="72" rx="9" fill="#E6DED2"/><rect x="373" y="191" width="58" height="72" rx="9" fill="#FFFFFF"/>
+    <circle cx="385" cy="203.5" r="3.8" fill="#1F4FA3"/><circle cx="394.4" cy="203.5" r="3.8" fill="#D9772B"/>
+    <rect x="380.6" y="209.2" width="18.2" height="2.8" rx="1.4" fill="#1F4FA3"/>
+    <rect x="404" y="200.6" width="19.5" height="3.6" rx="1.8" fill="#2B2F33"/><rect x="404" y="207" width="12.5" height="3" rx="1.5" fill="#A9A49C"/>
+    <rect x="379.5" y="218.5" width="45" height="11.4" rx="4" fill="#F3ECE2"/><rect x="384" y="222.6" width="26" height="3.2" rx="1.6" fill="#A9A49C"/>
+    <rect x="379.5" y="232.9" width="45" height="11.4" rx="4" fill="#E7EEF9"/><rect x="384" y="237" width="32" height="3.2" rx="1.6" fill="#1F4FA3"/>
+    <rect x="379.5" y="247.3" width="45" height="11.4" rx="4" fill="#F8E7D8"/><rect x="384" y="251.4" width="21" height="3.2" rx="1.6" fill="#B4581F"/>
+    </g>
+    <!-- 옥순 님 (가상 인물): 방석에 앉아 무릎이 마루 끝에 걸치고, 발은 댓돌 위에 -->
+    <path d="M309.2 282H316.5L318 297H310.4Z" fill="#A27B52"/>
+    <g fill="#A9A49C"><rect x="242.5" y="352.1" width="31" height="3.4" rx="1.7"/><rect x="290.5" y="347.6" width="31.5" height="3.4" rx="1.7"/></g>
+    <path d="M246.75 283H274.25L269 339.5Q269 343.5 265 343.5H250Q246 343.5 246 339.5Z" fill="#4A4F55"/>
+    <path d="M270.65 283H274.25L269 339.5Q269 343.5 265.6 343.5H265.4Z" fill="#2B2F33"/>
+    <path d="M281.75 283H309.25L310.5 335Q310.5 339 306.5 339H291.5Q287.5 339 287.5 335Z" fill="#4A4F55"/>
+    <path d="M305.65 283H309.25L310.5 335Q310.5 339 307.1 339H306.9Z" fill="#2B2F33"/>
+    <g fill="#2B2F33"><ellipse cx="260.5" cy="287.4" rx="13.4" ry="7.4"/><ellipse cx="295.5" cy="287.4" rx="13.4" ry="7.4"/></g>
+    <g fill="#FFFFFF"><path d="M239.5 350.5C239.5 345 243.5 341 250.5 341H261C266.5 341 269 344 269 348V351C269 353.1 267.4 354.5 265.4 354.5H242.9C240.9 354.5 239.5 352.9 239.5 350.5Z"/><path d="M-317.5 346C-317.5 340.5 -313.5 336.5 -306.5 336.5H-295.5C-290 336.5 -287.5 339.5 -287.5 343.5V346.5C-287.5 348.6 -289.1 350 -291.1 350H-314.1C-316.1 350 -317.5 348.4 -317.5 346Z" transform="scale(-1 1)"/></g>
+    <g fill="#E6DED2"><rect x="239.5" y="351.5" width="29.5" height="3" rx="1.5"/><rect x="287.5" y="347" width="30" height="3" rx="1.5"/></g>
+    <g fill="#4A4F55"><rect x="242" y="252" width="72" height="31" rx="10"/><ellipse cx="260.5" cy="283" rx="17.6" ry="7.6"/><ellipse cx="295.5" cy="283" rx="17.6" ry="7.6"/></g>
+    <g transform="translate(278 186) scale(1.1) translate(-270 -186.5)">
+    <path d="M235 256C232 236 230 212 235 199C238 191 246 187.5 257 186.5H283C294 187.5 302 191 305 199C310 212 308 236 305 256C292 259.5 248 259.5 235 256Z" fill="#B4581F"/>
+    <path d="M305 256C308 236 310 212 305 199C302 191 294 187.5 283 186.5L286 187.2C296 192 299 214 297 236C297 244 297.5 251 298 257.6C301 257.2 303.4 256.6 305 256Z" fill="#974A1C"/>
+    <path d="M259 187C262.5 192 266 194 270 194C274 194 277.5 192 281 187L273 232H267Z" fill="#FAF6F0"/>
+    <g fill="#974A1C"><path d="M256 187.4L259 187L267 232L263.4 232Z"/><path d="M284 187.4L281 187L273 232L276.6 232Z"/></g>
+    <path d="M263 168H277V188C277 191.5 273.5 194 270 194C266.5 194 263 191.5 263 188Z" fill="#E3B896"/>
+    <path d="M263 175C266.5 180 273.5 180 277 175V182C273.5 184.6 266.5 184.6 263 182Z" fill="#C99472"/>
+    <g fill="#E6DED2" transform="translate(0 1.4)"><path d="M257.4 186.6C260.6 190.6 264.6 193.2 269.4 193.8L262 199.2C260 195.4 258.4 191.4 257.4 186.6Z"/><path d="M282.6 186.6C279.4 190.6 275.4 193.2 270.6 193.8L278 199.2C280 195.4 281.6 191.4 282.6 186.6Z"/></g>
+    <g fill="#FFFFFF"><path d="M257.4 186.6C260.6 190.6 264.6 193.2 269.4 193.8L262 199.2C260 195.4 258.4 191.4 257.4 186.6Z"/><path d="M282.6 186.6C279.4 190.6 275.4 193.2 270.6 193.8L278 199.2C280 195.4 281.6 191.4 282.6 186.6Z"/></g>
+    <g transform="rotate(5 270 183) translate(270 157) scale(.74) translate(-80 -64)">
+    <g fill="#A9A49C"><ellipse cx="80.2" cy="50.7" rx="28.6" ry="24.6"/><circle cx="56" cy="60.5" r="11.2"/><circle cx="54.8" cy="49.9" r="11.2"/><circle cx="59.4" cy="39.3" r="11.2"/><circle cx="67.8" cy="31.7" r="11.2"/><circle cx="80.2" cy="28.5" r="11.2"/><circle cx="91.8" cy="31.7" r="11"/><circle cx="100.2" cy="39.3" r="10.6"/><circle cx="103.8" cy="49.9" r="10.2"/><circle cx="104.6" cy="62.6" r="8.8"/><circle cx="56" cy="63.4" r="8.4"/></g><g fill="#E9E6E1"><ellipse cx="79.4" cy="49.6" rx="25" ry="21"/><circle cx="55.2" cy="59.4" r="7.6"/><circle cx="54" cy="48.8" r="7.6"/><circle cx="58.6" cy="38.2" r="7.6"/><circle cx="67" cy="30.6" r="7.6"/><circle cx="79.4" cy="27.4" r="7.6"/><circle cx="91" cy="30.6" r="7.4"/><circle cx="99.4" cy="38.2" r="7"/><circle cx="103" cy="48.8" r="6.6"/></g>
+    <g fill="#E3B896"><ellipse cx="55.5" cy="69" rx="4.6" ry="6.8"/><ellipse cx="104.5" cy="69" rx="4.6" ry="6.8"/></g><path d="M80 37C96 37 104.5 49 104.5 63.5C104.5 80 95 94.5 80 94.5C65 94.5 55.5 80 55.5 63.5C55.5 49 64 37 80 37Z" fill="#E3B896"/><g fill="#FFFFFF"><circle cx="54.7" cy="74.6" r="1.9"/><circle cx="105.3" cy="74.6" r="1.9"/></g><g fill="#E9E6E1"><circle cx="61.5" cy="47.5" r="6.5"/><circle cx="70" cy="42.5" r="8"/><circle cx="80" cy="41" r="8.5"/><circle cx="90" cy="42.5" r="8"/><circle cx="98.5" cy="47.5" r="6.5"/><circle cx="57" cy="57" r="5.5"/><circle cx="103" cy="57" r="5.5"/></g><g fill="none" stroke="#A9A49C" stroke-width="2.95" stroke-linecap="round" stroke-linejoin="round"><path d="M66.8 56Q72.5 53.4 78 55.4"/><path d="M86.4 55.4Q91.9 53.4 97.6 56"/></g><g fill="#2B2F33"><ellipse cx="72.7" cy="70.2" rx="2.3" ry="2.2"/><ellipse cx="91.7" cy="70.2" rx="2.3" ry="2.2"/></g><g fill="none" stroke="#2B2F33" stroke-width="1.83" stroke-linecap="round" stroke-linejoin="round"><path d="M69.4 68.2Q72.7 66.6 76 68.2"/><path d="M88.4 68.2Q91.7 66.6 95 68.2"/></g><g fill="none" stroke="#C99472" stroke-width="2.95" stroke-linecap="round" stroke-linejoin="round"><path d="M83.2 72.5Q85.2 78.6 81.4 80"/></g><g fill="none" stroke="#B4581F" stroke-width="2.95" stroke-linecap="round" stroke-linejoin="round"><path d="M77.4 85.6Q82.2 88.8 87 85.6"/></g><g fill="none" stroke="#2B2F33" stroke-width="2.95" stroke-linecap="round" stroke-linejoin="round"><circle cx="72.7" cy="68" r="7.3"/><circle cx="91.7" cy="68" r="7.3"/><path d="M80.1 67.4Q82.2 65.6 84.3 67.4"/><path d="M65.4 66.8L56.8 65.4"/><path d="M99 66.8L103.2 65.4"/></g>
+    </g>
+    <rect x="-21.15" y="-7.5" width="42.29" height="15" rx="7.5" transform="translate(303 219.5) rotate(81.57)" fill="#974A1C"/>
+    <rect x="-21.15" y="-7.5" width="42.29" height="15" rx="7.5" transform="translate(239.6 219.5) rotate(98.43)" fill="#974A1C"/><rect x="-21.15" y="-7.5" width="42.29" height="15" rx="7.5" transform="translate(237 219.5) rotate(98.43)" fill="#B4581F"/>
+    <rect x="-19.03" y="-6.5" width="38.06" height="13" rx="6.5" transform="translate(246 241.6) rotate(28.61)" fill="#974A1C"/><rect x="-19.03" y="-6.5" width="38.06" height="13" rx="6.5" transform="translate(294 241.6) rotate(151.39)" fill="#974A1C"/>
+    <rect x="-19.03" y="-6.5" width="38.06" height="13" rx="6.5" transform="translate(246 239) rotate(28.61)" fill="#B4581F"/><rect x="-19.03" y="-6.5" width="38.06" height="13" rx="6.5" transform="translate(294 239) rotate(151.39)" fill="#B4581F"/>
+    <g transform="rotate(-6 270 238)"><rect x="261" y="225" width="18" height="26" rx="4" fill="#2B2F33"/><circle cx="266" cy="230.5" r="2" fill="#4A4F55"/></g>
+    <rect x="253" y="238" width="13" height="14" rx="6.5" fill="#E3B896"/><rect x="274" y="238" width="13" height="14" rx="6.5" fill="#E3B896"/>
+    <rect x="262" y="241" width="5" height="3" rx="1.5" fill="#C99472"/><rect x="273" y="241" width="5" height="3" rx="1.5" fill="#C99472"/>
+    </g>
+    <!-- 처마 -->
+    <rect width="640" height="34" fill="#A27B52"/>
+    <g fill="#C29A6B"><circle cx="12" cy="23" r="5.5"/><circle cx="36" cy="23" r="5.5"/><circle cx="60" cy="23" r="5.5"/><circle cx="84" cy="23" r="5.5"/><circle cx="108" cy="23" r="5.5"/><circle cx="132" cy="23" r="5.5"/><circle cx="156" cy="23" r="5.5"/><circle cx="180" cy="23" r="5.5"/><circle cx="204" cy="23" r="5.5"/><circle cx="228" cy="23" r="5.5"/><circle cx="252" cy="23" r="5.5"/><circle cx="276" cy="23" r="5.5"/><circle cx="300" cy="23" r="5.5"/><circle cx="324" cy="23" r="5.5"/><circle cx="348" cy="23" r="5.5"/><circle cx="372" cy="23" r="5.5"/><circle cx="396" cy="23" r="5.5"/><circle cx="420" cy="23" r="5.5"/><circle cx="444" cy="23" r="5.5"/><circle cx="468" cy="23" r="5.5"/><circle cx="492" cy="23" r="5.5"/><circle cx="516" cy="23" r="5.5"/><circle cx="540" cy="23" r="5.5"/><circle cx="564" cy="23" r="5.5"/><circle cx="588" cy="23" r="5.5"/><circle cx="612" cy="23" r="5.5"/><circle cx="636" cy="23" r="5.5"/></g>
+    <g fill="#4A4F55"><rect width="640" height="10"/><circle cx="8" cy="10" r="6"/><circle cx="24" cy="10" r="6"/><circle cx="40" cy="10" r="6"/><circle cx="56" cy="10" r="6"/><circle cx="72" cy="10" r="6"/><circle cx="88" cy="10" r="6"/><circle cx="104" cy="10" r="6"/><circle cx="120" cy="10" r="6"/><circle cx="136" cy="10" r="6"/><circle cx="152" cy="10" r="6"/><circle cx="168" cy="10" r="6"/><circle cx="184" cy="10" r="6"/><circle cx="200" cy="10" r="6"/><circle cx="216" cy="10" r="6"/><circle cx="232" cy="10" r="6"/><circle cx="248" cy="10" r="6"/><circle cx="264" cy="10" r="6"/><circle cx="280" cy="10" r="6"/><circle cx="296" cy="10" r="6"/><circle cx="312" cy="10" r="6"/><circle cx="328" cy="10" r="6"/><circle cx="344" cy="10" r="6"/><circle cx="360" cy="10" r="6"/><circle cx="376" cy="10" r="6"/><circle cx="392" cy="10" r="6"/><circle cx="408" cy="10" r="6"/><circle cx="424" cy="10" r="6"/><circle cx="440" cy="10" r="6"/><circle cx="456" cy="10" r="6"/><circle cx="472" cy="10" r="6"/><circle cx="488" cy="10" r="6"/><circle cx="504" cy="10" r="6"/><circle cx="520" cy="10" r="6"/><circle cx="536" cy="10" r="6"/><circle cx="552" cy="10" r="6"/><circle cx="568" cy="10" r="6"/><circle cx="584" cy="10" r="6"/><circle cx="600" cy="10" r="6"/><circle cx="616" cy="10" r="6"/><circle cx="632" cy="10" r="6"/></g>
+    <rect y="34" width="640" height="10" fill="#C29A6B"/><rect y="41" width="640" height="3" fill="#A27B52"/>
+    <!-- 감나무 가지 -->
+    <path d="M-8 30C30 34 72 46 120 72C126 75.5 128 80 124 81C78 58 34 46 -8 42Z" fill="#3A2E28"/><g fill="#3A2E28"><path d="M51.5 52L55.5 53L55 58.6H52Z"/><path d="M95.5 64.5L99.5 66.6L99 72.2H96Z"/><path d="M119.6 76.4L123.4 78.6L125 84.6H122.2Z"/></g><g transform="translate(8 36) rotate(-24)"><path d="M0 0C8.5 -9.52 25.5 -9.52 34 0C25.5 9.52 8.5 9.52 0 0Z" fill="#6E7B4E"/><path d="M0 0C8.5 9.52 25.5 9.52 34 0Z" fill="#5B6741"/></g><g transform="translate(68 49) rotate(-60)"><path d="M0 0C7.5 -8.4 22.5 -8.4 30 0C22.5 8.4 7.5 8.4 0 0Z" fill="#6E7B4E"/><path d="M0 0C7.5 8.4 22.5 8.4 30 0Z" fill="#5B6741"/></g><g transform="translate(84 57) rotate(26)"><path d="M0 0C7 -7.84 21 -7.84 28 0C21 7.84 7 7.84 0 0Z" fill="#C29A6B"/><path d="M0 0C7 7.84 21 7.84 28 0Z" fill="#A27B52"/></g><g transform="translate(124 80) rotate(12)"><path d="M0 0C7 -7.84 21 -7.84 28 0C21 7.84 7 7.84 0 0Z" fill="#6E7B4E"/><path d="M0 0C7 7.84 21 7.84 28 0Z" fill="#5B6741"/></g><ellipse cx="53.6" cy="71.4" rx="14.5" ry="13" fill="#D9772B"/><path d="M64.71 63.04A14.5 13 0 0 1 42.49 79.76A16.24 14.56 0 0 0 64.71 63.04Z" fill="#B4581F"/><g fill="#5B6741"><ellipse cx="53.6" cy="59.9" rx="7.25" ry="2.6"/><ellipse cx="53.6" cy="61.9" rx="2.6" ry="3.4"/></g><ellipse cx="97.6" cy="86" rx="15.5" ry="14" fill="#D9772B"/><path d="M109.47 77A15.5 14 0 0 1 85.73 95A17.36 15.68 0 0 0 109.47 77Z" fill="#B4581F"/><g fill="#5B6741"><ellipse cx="97.6" cy="73.5" rx="7.75" ry="2.6"/><ellipse cx="97.6" cy="75.5" rx="2.6" ry="3.4"/></g><ellipse cx="124" cy="97" rx="12.5" ry="11.5" fill="#D9772B"/><path d="M133.58 89.61A12.5 11.5 0 0 1 114.42 104.39A14 12.88 0 0 0 133.58 89.61Z" fill="#B4581F"/><g fill="#5B6741"><ellipse cx="124" cy="87" rx="6.25" ry="2.6"/><ellipse cx="124" cy="89" rx="2.6" ry="3.4"/></g>
+    </g>
+    <rect x="1" y="1" width="638" height="398" rx="27" fill="none" stroke="#E6DED2" stroke-width="2"/>
+  </symbol>
+  <!-- 팀 역할 그림: AI 파이프라인. 돋보기로 광고 문장을 짚고, 직인이 찍힌 공식 문서와 선으로 이어요. -->
+  <symbol id="il-team-ai" viewBox="0 0 120 120">
+    <rect width="120" height="120" rx="34" fill="#E7EEF9"/>
+    <g transform="translate(60 61) scale(.92) translate(-60 -60)">
+    <g transform="rotate(6 87 47)">
+    <path d="M73.5 24.5H94L103.5 34V71.5C103.5 73.7 101.7 75.5 99.5 75.5H73.5C71.3 75.5 69.5 73.7 69.5 71.5V28.5C69.5 26.3 71.3 24.5 73.5 24.5Z" fill="#C7D3E8" transform="translate(2 2.5)"/><path d="M73.5 24.5H94L103.5 34V71.5C103.5 73.7 101.7 75.5 99.5 75.5H73.5C71.3 75.5 69.5 73.7 69.5 71.5V28.5C69.5 26.3 71.3 24.5 73.5 24.5Z" fill="#FFFFFF"/>
+    <path d="M94 24.5V31C94 32.7 95.3 34 97 34H103.5Z" fill="#C7D3E8"/>
+    <rect x="75" y="31" width="14" height="4.4" rx="2.2" fill="#1F4FA3"/>
+    <g fill="#C7D3E8"><rect x="75" y="41" width="22.5" height="3.6" rx="1.8"/><rect x="75" y="48" width="22.5" height="3.6" rx="1.8"/><rect x="75" y="55" width="14" height="3.6" rx="1.8"/></g>
+    <rect x="88.4" y="61.2" width="11" height="11" rx="2.6" fill="#B4581F"/>
+    <rect x="91.1" y="63.9" width="5.6" height="5.6" rx="1.2" fill="none" stroke="#F8E7D8" stroke-width="1.3"/>
+    </g>
+    <g transform="rotate(-6 41 61)">
+    <rect x="18" y="27.5" width="48" height="67" rx="7" fill="#C7D3E8" transform="translate(2 2.5)"/><rect x="18" y="27.5" width="48" height="67" rx="7" fill="#FFFFFF"/>
+    <rect x="23" y="32.5" width="38" height="18" rx="4" fill="#F8E7D8"/><rect x="37.5" y="35.5" width="9" height="13" rx="3" fill="#D9772B"/>
+    <rect x="23" y="55" width="28" height="4.4" rx="2.2" fill="#E6DED2"/>
+    <rect x="21.5" y="63" width="41" height="9" rx="3" fill="#F8E7D8"/><rect x="24.5" y="65.5" width="30" height="4" rx="2" fill="#B4581F"/>
+    <g fill="#E6DED2"><rect x="23" y="77" width="34" height="3.6" rx="1.8"/><rect x="23" y="83.5" width="24" height="3.6" rx="1.8"/></g>
+    </g>
+    <g fill="none" stroke="#1F4FA3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M55 56C60 50 64 47.5 69.5 46.5"/></g>
+    <g fill="#1F4FA3"><circle cx="55" cy="56" r="3.2"/><circle cx="69.5" cy="46.5" r="3.2"/></g>
+    <path d="M48.5 76.5L60.5 89.5" stroke="#173C7D" stroke-width="8.4" stroke-linecap="round"/>
+    <path d="M47.8 75.8L59.6 88.6" stroke="#1F4FA3" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="40" cy="67" r="11.5" fill="#FFFFFF"/>
+    <g clip-path="url(#il-teamai-lens)"><g transform="rotate(-6 40 67)"><g fill="#E6DED2"><rect x="26" y="57.2" width="26" height="3.8" rx="1.9"/><rect x="23.4" y="64.9" width="9.8" height="4.4" rx="2.2"/><rect x="26" y="74.6" width="17" height="3.8" rx="1.9"/></g><rect x="35.8" y="62.4" width="32" height="9.4" rx="3.2" fill="#F8E7D8"/><rect x="37.6" y="64.9" width="30" height="4.4" rx="2.2" fill="#B4581F"/></g></g>
+    <circle cx="40" cy="67" r="12.8" fill="none" stroke="#1F4FA3" stroke-width="4.4"/>
+    </g>
+  </symbol>
+  <!-- 팀 역할 그림: 백엔드·데이터. 서버 묶음이 선으로 휴대폰과 그 위의 결과 카드에 이어져요. 말풍선 모양은 쓰지 않아요. -->
+  <symbol id="il-team-backend" viewBox="0 0 120 120">
+    <rect width="120" height="120" rx="34" fill="#E7EEF9"/>
+    <rect x="13" y="37" width="42" height="17" rx="5" fill="#173C7D"/><rect x="13" y="37" width="42" height="13.5" rx="5" fill="#1F4FA3"/>
+    <rect x="13" y="57" width="42" height="17" rx="5" fill="#173C7D"/><rect x="13" y="57" width="42" height="13.5" rx="5" fill="#1F4FA3"/>
+    <rect x="13" y="77" width="42" height="17" rx="5" fill="#173C7D"/><rect x="13" y="77" width="42" height="13.5" rx="5" fill="#1F4FA3"/>
+    <g fill="#FAF6F0"><circle cx="21" cy="43.8" r="2.4"/><circle cx="21" cy="63.8" r="2.4"/><circle cx="21" cy="83.8" r="2.4"/></g>
+    <g fill="#F8E7D8"><circle cx="28.5" cy="43.8" r="2.4"/><circle cx="28.5" cy="63.8" r="2.4"/><circle cx="28.5" cy="83.8" r="2.4"/></g>
+    <g fill="#173C7D"><rect x="35" y="42" width="14" height="3.6" rx="1.8"/><rect x="35" y="62" width="14" height="3.6" rx="1.8"/><rect x="35" y="82" width="14" height="3.6" rx="1.8"/></g>
+    <g fill="none" stroke="#1F4FA3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M57.5 65.5H72"/></g>
+    <g fill="#1F4FA3"><circle cx="57.5" cy="65.5" r="3.2"/><circle cx="72" cy="65.5" r="3.2"/></g>
+    <rect x="76" y="38" width="29" height="56" rx="7" fill="#2B2F33"/><rect x="79" y="41" width="23" height="50" rx="4.5" fill="#FFFFFF"/>
+    <rect x="82" y="46" width="6" height="6" rx="2" fill="#1F4FA3"/>
+    <rect x="82" y="57" width="13" height="5.4" rx="2.7" fill="#E7EEF9"/><rect x="86" y="66" width="13" height="5.4" rx="2.7" fill="#F8E7D8"/><rect x="82" y="75" width="10" height="5.4" rx="2.7" fill="#E7EEF9"/>
+    <rect x="63" y="13" width="39.5" height="21" rx="6" fill="#C7D3E8" transform="translate(2 2.5)"/><rect x="63" y="13" width="39.5" height="21" rx="6" fill="#FFFFFF"/>
+    <rect x="68.5" y="19.5" width="8" height="8" rx="2.4" fill="#1F4FA3"/>
+    <rect x="80.5" y="19.5" width="16" height="3.4" rx="1.7" fill="#1F4FA3"/><rect x="80.5" y="25" width="11" height="3.4" rx="1.7" fill="#C7D3E8"/>
+  </symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="곁 GYEOT 처음으로">
+      <svg class="brand-mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span>곁 <small>GYEOT</small></span>
+    </a>
+    <nav class="nav-links" aria-label="섹션 이동">
+      <a href="#problem">문제</a>
+      <a href="#position">차별점</a>
+      <a href="#demo">사용 흐름</a>
+      <a href="#states">결과 유형</a>
+      <a href="#users">사용자</a>
+      <a href="#journey">여정</a>
+      <a href="#design">디자인</a>
+      <a href="#architecture">구조</a>
+      <a href="#ai">AI</a>
+      <a href="#plan">계획</a>
+      <a href="#team">팀</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== 히어로 ===================== -->
+<section class="hero hx-hero tone-paper" id="top">
+  <div class="wrap hx-wrap">
+    <div class="hx-copy">
+      <span class="eyebrow hx-eyebrow">AI 소비 동행 서비스&nbsp;· 기획안</span>
+      <h1 class="hx-title">AI가 대신 <span class="hx-nw">결정하지 않아요.</span><br><em>스스로 <span class="hx-nw">판단할&nbsp;수 있도록</span></em><br>곁에서 도와요.</h1>
+      <p class="lead hx-lead">곁은 고령층이 온라인 건강식품 광고 앞에서 식약처 공식 근거를 보고 스스로 판단하도록 돕는 AI&nbsp;소비&nbsp;동행 서비스예요. 광고 화면을 캡처해 카카오톡으로 보내기만 하면 되도록 만들고 있어요.</p>
+      <div class="hero-actions hx-actions">
+        <a class="btn btn-primary" href="#demo"><i data-lucide="play"></i>사용 흐름 보기</a>
+        <a class="btn btn-ghost" href="#problem"><i data-lucide="message-circle-question"></i>왜 만들었는지 보기</a>
+      </div>
+    </div>
+
+    <figure class="hx-figure">
+      <span class="hx-floor" aria-hidden="true"></span>
+      <div class="hx-stage">
+        <div class="hx-stage-in">
+          <span class="hx-orb hx-orb-a" aria-hidden="true"></span>
+          <span class="hx-orb hx-orb-b" aria-hidden="true"></span>
+
+          <!-- 뒤: 큰 글씨 결과 웹 (사용 흐름 3단계에서 ‘자세히 보고 듣기’를 누르면 열리는 화면) -->
+          <div class="phone hx-back" role="img" aria-label="큰 글씨 결과 웹 화면 예시. 광고에서 하는 말, 식약처 원문, 두 표현의 차이를 세 칸으로 나란히 비교하고 소리로 듣기 버튼이 있어요.">
+            <div class="screen">
+              <div class="statusbar"><span>2:15</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+              <div class="web">
+                <div class="urlbar"><i data-lucide="lock"></i>gyeot.example/r/8KQ2</div>
+                <div class="web-body">
+                  <div class="web-top"><span class="logo"><svg aria-hidden="true"><use href="#mark"/></svg>곁</span><span class="fs-toggle"><span>가</span><span>가</span><span>가</span></span></div>
+                  <div class="w-title">마디온 MSM 플러스 광고를 식약처 기록과 비교했어요</div>
+                  <div class="tts"><i data-lucide="volume-2"></i>소리로 듣기</div>
+                  <div class="cmp ad"><small><i data-lucide="megaphone"></i>광고에서는 이렇게 말해요</small><p>“연골이 다시 자라요”</p></div>
+                  <div class="cmp gov"><small><i data-lucide="landmark"></i>식약처에는 이렇게 적혀 있어요</small><p>“관절 및 연골 건강에 도움을 줄 수 있음”</p></div>
+                  <div class="cmp diff"><small><i data-lucide="arrow-up-right"></i>두 표현의 차이</small><p>‘도움을 줄 수 있음’과 ‘다시 자란다’는 달라요.</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 앞: 카카오톡 채널 결과 카드 (사용 흐름 3단계 화면) -->
+          <div class="phone hx-front" role="img" aria-label="카카오톡 채널 화면 예시. 곁의 결과 카드가 범위 초과 표시와 함께 광고 문구 ‘연골이 다시 자라요’와 식약처 원문 ‘관절 및 연골 건강에 도움을 줄 수 있음’을 나란히 보여주고, 자세히 보고 듣기 버튼을 둬요. 카드 아래에는 하루 뒤 다시 보기, 가족에게 물어보기, 샀어요 세 가지를 같은 모양의 선택지로 둬요.">
+            <div class="screen">
+              <div class="chat-top">
+                <div class="statusbar"><span>2:14</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+                <div class="appbar"><i data-lucide="chevron-left" class="back"></i><svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>곁<span class="sp"><i data-lucide="search"></i><i data-lucide="menu"></i></span></div>
+              </div>
+              <div class="chat">
+                <div class="msg me"><span class="time">오후 2:13</span><div class="shot sm"><div class="mini"><b>연골이 다시 자라요</b><span>오늘만 70%</span><i class="p"></i></div></div></div>
+                <div class="msg bot">
+                  <svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>
+                  <div class="col"><span class="name">곁</span>
+                    <div class="botcard">
+                      <div class="bc-head"><span class="bc-state st-over"><i data-lucide="arrow-up-right"></i>범위 초과</span><h5>광고가 식약처 인정 범위보다 더 말하고 있어요</h5></div>
+                      <div class="bc-body">
+                        <div class="bc-row"><small>광고에서는</small>“연골이 다시 자라요”</div>
+                        <div class="bc-row"><small>식약처에는</small>“관절 및 연골 건강에 도움을 줄 수 있음”</div>
+                      </div>
+                      <div class="bc-btn"><i data-lucide="volume-2"></i>자세히 보고 듣기</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="qr qr-eq"><span>하루 뒤 다시&nbsp;보기</span><span>가족에게 물어보기</span><span>샀어요</span></div>
+              </div>
+              <div class="chat-input"><i data-lucide="plus"></i><span class="field">메시지 입력</span><i data-lucide="smile"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 라벨 칩: 정적, 화면 내용을 가리지 않는 자리에만 -->
+      <ul class="hx-chips">
+        <li class="hx-chip hx-chip-a"><span class="hx-ci" aria-hidden="true"><i data-lucide="columns-2"></i></span><span aria-hidden="true">광고의 말 ↔ 식약처 원문</span><span class="sr-only">광고의 말과 식약처 원문을 나란히 비교해요</span></li>
+      </ul>
+
+      <figcaption class="mock-label hx-cap"><span>카카오톡 채널(앞)&#8288;과 큰&nbsp;글씨 결과&nbsp;웹(뒤) 화면 예시</span> <span>이해를 돕기 위한 재구성이며 제품명은 가상이에요</span></figcaption>
+    </figure>
+  </div>
+
+  <!-- 한눈에 보기: 2분 독자가 '어떻게'를 바로 알도록 세 단계와 해당 섹션 링크 -->
+  <div class="wrap">
+    <ol class="glance" aria-label="곁 한눈에 보기">
+      <li><a href="#demo"><span class="glance-n" aria-hidden="true">1</span><span class="glance-ic" aria-hidden="true"><i data-lucide="send"></i></span><span class="glance-t"><b>캡처를 카톡으로</b><span>앱 설치 없이 광고 화면을 보내요</span></span></a></li>
+      <li><a href="#states"><span class="glance-n" aria-hidden="true">2</span><span class="glance-ic" aria-hidden="true"><i data-lucide="columns-2"></i></span><span class="glance-t"><b>식약처 원문과 나란히</b><span>결과는 네 가지, 모르면 ‘확인 불가’</span></span></a></li>
+      <li><a href="#position"><span class="glance-n" aria-hidden="true">3</span><span class="glance-ic" aria-hidden="true"><i data-lucide="hand"></i></span><span class="glance-t"><b>결정은 본인이</b><span>가족은 원할&nbsp;때만 두 번째 의견</span></span></a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== 문제 ===================== -->
+<section id="problem" class="tone-white">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">01</span>문제</span>
+      <h2 class="h-section"><span class="h-seg">스마트폰은 이미 손에 있어요.</span> <span class="h-seg">다만 광고의 말을 공식 근거와 맞대어 보기는 어려워요.</span></h2>
+    </div>
+
+    <div class="story">
+      <div class="quote-stack">
+        <p class="quote-lead reveal">두 팀원이 서로 다른 곳에서 같은 문제를 봤어요.</p>
+        <blockquote class="quote reveal">
+          가족이 모두 외출한 낮에도 할머니는 유튜브로 건강 정보를 보세요. “연골이 다시 자라요”, “오늘만 특가” 같은 광고가 계속 나와요. 걱정된 가족이 구매에 끼어들면, 할머니는 그 도움을 자신의 판단을 존중받지 못하는 일로 받아들이기도 하셨어요.
+          <footer><b>집에서</b> — 할머니와 함께 사는 팀원이 본 장면</footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          복지기관에서 어르신들께 스마트폰 사용을 알려 드리면 기기 사용은 금세 익히세요. 그런데 화면 속 수많은 콘텐츠의 정보를 믿어도 되는지는 여전히 판단하기 어려워하셨어요.
+          <footer><b>복지 현장에서</b> — 봉사단을 이끌며 스마트폰 교육을 한 팀원이 본 장면</footer>
+        </blockquote>
+      </div>
+
+      <div class="stats stats-one">
+        <div class="stat wide reveal">
+          <div>
+            <div class="num num-weak">56.2</div>
+            <div class="label">고령층 디지털 역량 수준<br><span class="note">일반국민 = 100&nbsp;· 접근은 95.4</span></div>
+          </div>
+          <div>
+            <div class="gap-bar" role="group" aria-label="고령층 디지털 정보화 수준 막대 그래프">
+              <div class="gap-row"><span>접근</span><div class="gap-track"><div class="gap-fill" style="width:95.4%"></div></div><b>95.4</b></div>
+              <div class="gap-row"><span>역량</span><div class="gap-track"><div class="gap-fill weak" style="width:56.2%"></div></div><b>56.2</b></div>
+            </div>
+            <p class="src" style="margin-top:10px">기기는 거의 다 갖췄지만, 쓰고 판단하는 역량은 절반 남짓이에요. 만&nbsp;55세 이상&nbsp;기준. 출처: <span class="hx-nw">과기정통부&#8288;·NIA</span>, 2025 디지털정보격차 실태조사(2026.3 발표)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 왜 지금인가요 -->
+    <div class="now reveal">
+      <div class="now-head">
+        <span class="now-head-ic" aria-hidden="true"><i data-lucide="hourglass"></i></span>
+        <div>
+          <h3>왜 지금인가요</h3>
+          <p>고령 소비자는 늘고, 광고는 AI로 더 교묘해지고, 제도는 움직이고 있어요.</p>
+        </div>
+      </div>
+
+      <ol class="now-list">
+        <li class="now-item">
+          <span class="now-date">2024.12</span>
+          <span class="now-mark" aria-hidden="true"><span class="now-node"><i data-lucide="users-round"></i></span></span>
+          <h4 class="now-title">초고령사회에 들어섰어요</h4>
+          <p class="now-fact">65세 이상 인구가 전체 주민등록인구의 <b>20%</b>&#8288;가 됐어요.</p>
+          <p class="now-src">출처: 행정안전부(2024.12.23)</p>
+        </li>
+        <li class="now-item">
+          <span class="now-date">2025</span>
+          <span class="now-mark" aria-hidden="true"><span class="now-node"><i data-lucide="megaphone"></i></span></span>
+          <h4 class="now-title">오인 광고 적발이 역대 최대예요</h4>
+          <p class="now-fact">일반식품을 건강기능식품처럼 광고하다 적발된 사례가 <b>7,244건</b>이에요.</p>
+          <p class="now-src">출처: 식약처 국정감사 제출자료 보도(남인순 의원, 2026.9)</p>
+        </li>
+        <li class="now-item">
+          <span class="now-date">2026.1</span>
+          <span class="now-mark" aria-hidden="true"><span class="now-node"><i data-lucide="accessibility"></i></span></span>
+          <h4 class="now-title">디지털포용법이 시행됐어요</h4>
+          <p class="now-fact">누구나 차별 없이 디지털 기술을 누리게 하자는 법이에요.</p>
+          <p class="now-src">출처: 정책브리핑(2026.1.22 시행)</p>
+        </li>
+        <li class="now-item now-item--now">
+          <span class="now-date">2026.1~7</span>
+          <span class="now-mark" aria-hidden="true"><span class="now-node"><i data-lucide="bot"></i></span><span class="now-today">지금</span></span>
+          <h4 class="now-title">AI 식의약품 부당광고가 작년 전체를 넘었어요</h4>
+          <p class="now-fact">AI로 만들었거나 그렇게 의심되는 식의약품 부당광고가 7개월 만에 작년 한&nbsp;해를 넘었어요.</p>
+          <div class="now-bars" role="img" aria-label="2025년 한 해 93건, 2026년 1월부터 7월까지 166건">
+            <div class="now-bar"><span>2025년 한&nbsp;해</span><span class="now-bar-track"><span class="now-bar-fill" style="width:56%"></span></span><b>93</b></div>
+            <div class="now-bar now-bar-hi"><span>2026년 1~7월</span><span class="now-bar-track"><span class="now-bar-fill" style="width:100%"></span></span><b>166</b></div>
+          </div>
+          <p class="now-src">출처: 식약처 국회 제출자료 보도(경향신문, 2026.10)</p>
+        </li>
+        <li class="now-item now-item--next">
+          <span class="now-date">2026.11.27</span>
+          <span class="now-mark" aria-hidden="true"><span class="now-node"><i data-lucide="gavel"></i></span></span>
+          <h4 class="now-title">AI 가짜 의사&#8288;·약사 광고가 금지돼요</h4>
+          <p class="now-fact"><b>11월 27일</b> 시행 예정이에요.</p>
+          <p class="now-src">근거: 식품표시광고법&#8288;·약사법 개정 공포(약사공론, 2026.5.26), 시행일 보도(경향신문, 2026.10.4)</p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 차별점 ===================== -->
+<section id="position" class="pos-section tone-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">02</span>차별점</span>
+      <h2 class="h-section pos-title"><span class="h-seg">막는 서비스는 많아요.</span> <span class="h-seg">함께 판단하는 서비스는 드물어요.</span></h2>
+      <p class="lead">기존 서비스는 대부분 위험을 대신 찾아 막아요. 곁은 근거를 보여주고, 결정은 본인에게 맡겨요.</p>
+    </div>
+
+
+    <!-- 기존 서비스와 곁 비교: 왼쪽 기존, 오른쪽 곁. 넓은 화면에서는 두 카드의 줄을 맞춰요 -->
+    <div class="pos-vs">
+      <article class="pos-vs-card pos-vs-old reveal">
+        <header class="pos-vs-head">
+          <span class="pos-vs-badge" aria-hidden="true"><i data-lucide="shield"></i></span>
+          <span class="tag pos-vs-tag">기존 서비스&nbsp;· 대신 막기</span>
+          <h3>알아서 찾아 막고 보호자에게 알려요</h3>
+        </header>
+        <ul class="pos-vs-chips" aria-label="기존 서비스 유형">
+          <li><i data-lucide="phone"></i>통신사&#8288;·제조사 피싱 탐지</li>
+          <li><i data-lucide="shield-ban"></i>악성 링크&#8288;·앱 차단 앱</li>
+          <li><i data-lucide="scan-eye"></i>화면 감시형 고령자 보호 앱</li>
+          <li><i data-lucide="scan-search"></i>스크린샷 사기 판별 앱</li>
+          <li><i data-lucide="gavel"></i>규제기관 AI 광고 단속</li>
+        </ul>
+        <ol class="pos-vs-steps">
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="radar"></i></span><div><span class="pos-vs-k">시작</span><p>보이스피싱&#8288;·악성 링크를 자동으로 탐지해요</p></div></li>
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="ban"></i></span><div><span class="pos-vs-k">방식</span><p>경고하거나 차단해요</p></div></li>
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="bell-ring"></i></span><div><span class="pos-vs-k">결정</span><p>보호자에게 자동으로 알려요</p></div></li>
+        </ol>
+        <p class="pos-vs-note">보이스피싱처럼 분명한 경우에는 강하지만, 그럴듯한 과장 광고 앞에서는 결국 누군가 대신 판단해요. 광고 문구를 공식 근거와 대조하는 PC 도구나 범용 AI 챗봇도 있지만, 고령 사용자에 맞춘 입구와 결정권 설계는 기본이 아니에요.</p>
+      </article>
+
+      <div class="pos-vs-arrow" aria-hidden="true"><i data-lucide="plus"></i></div>
+
+      <article class="pos-vs-card pos-vs-new reveal">
+        <header class="pos-vs-head">
+          <span class="pos-vs-badge" aria-hidden="true"><svg><use href="#mark"/></svg></span>
+          <span class="tag pos-vs-tag">곁&nbsp;· 같이 확인하기</span>
+          <h3>근거를 보여주고 결정은 본인이 해요</h3>
+        </header>
+        <ol class="pos-vs-steps">
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="image-up"></i></span><div><span class="pos-vs-k">시작</span><p>본인이 확인하고 싶을&nbsp;때 광고를 보내요</p></div></li>
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="columns-2"></i></span><div><span class="pos-vs-k">방식</span><p>광고의 말과 식약처 원문을 나란히 보여줘요</p></div></li>
+          <li><span class="pos-vs-ic" aria-hidden="true"><i data-lucide="hand"></i></span><div><span class="pos-vs-k">결정</span><p>다음 행동은 본인이 고르고, 가족은 원할&nbsp;때만 불러요</p></div></li>
+        </ol>
+        <p class="pos-vs-note">보이스피싱 차단은 기존 서비스에 맡기고, 곁은 망설여지는 광고 앞에서 판단을 도와요.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 사용 흐름 ===================== -->
+<section id="demo" class="tone-ink">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">03</span>사용 흐름</span>
+      <h2 class="h-section">광고 캡처 한&nbsp;장에서 결정까지</h2>
+      <p class="lead">가상 인물 옥순 님(74세)이 광고를 보고 망설이는 순간부터 따라가요. 4단계에서 고른 버튼에 따라 화면이 세 갈래로 이어져요. 화면은 예시이고 제품명&#8288;·채널명은 가상이에요.</p>
+    </div>
+
+    <div class="flow-steps flow-v2" role="group" aria-label="사용 흐름 단계로 이동">
+      <div class="flow-main">
+        <button type="button" data-go="0"><b>1</b>광고 캡처</button>
+        <span class="flow-arr" aria-hidden="true"></span>
+        <button type="button" data-go="1"><b>2</b>카톡으로 보내기</button>
+        <span class="flow-arr" aria-hidden="true"></span>
+        <button type="button" data-go="2"><b>3</b>결과 보기</button>
+        <span class="flow-arr" aria-hidden="true"></span>
+        <button type="button" data-go="3" class="flow-decide"><b>4</b>다음 행동 고르기</button>
+      </div>
+      <div class="flow-branch">
+        <span class="flow-branch-label"><i data-lucide="split"></i>4에서 고른 버튼에 따라</span>
+        <div class="flow-branch-btns">
+          <button type="button" data-go="4"><b>5</b>가족 의견</button>
+          <button type="button" data-go="5"><b>6</b>샀어요</button>
+          <button type="button" data-go="6"><b>7</b>하루 뒤 알림</button>
+        </div>
+      </div>
+  </div>
+
+  <div class="wrap">
+    <div class="rail" id="rail" tabindex="0" role="region" aria-label="사용 흐름 화면 목록, 옆으로 넘겨 보세요">
+
+      <!-- 1. 광고 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="영상 앱에서 관절 영양제 광고를 보는 화면 예시">
+          <div class="screen dark">
+            <div class="statusbar"><span>2:12</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+            <div class="video">
+              <span class="ai-badge">영상</span>
+              <div class="doc"></div>
+              <div class="claim"><b>연골이 다시 자라요</b><span>정형외과 의사 추천</span><span>오늘만 70% 할인</span></div>
+              <span class="ad">광고</span>
+            </div>
+            <div class="vmeta">
+              <h5>무릎 통증, 이것 하나로 끝 · 마디온 MSM 플러스</h5>
+              <p>○○건강TV · 광고</p>
+            </div>
+            <div class="vcta">지금 구매하기</div>
+            <div class="capture-flash"><i data-lucide="scan"></i>전원 버튼과 음량 아래 버튼을 함께 눌러 화면을 캡처해요</div>
+            <div class="vshare"><span><i data-lucide="thumbs-up"></i>좋아요</span><span class="hl"><i data-lucide="share-2"></i>공유</span><span><i data-lucide="download"></i>저장</span></div>
+            <div class="vnext" aria-hidden="true"><span><i></i><i></i><i></i></span><span><i></i><i></i><i></i></span></div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 1&nbsp;· 화면 예시</span>
+          <h3>망설여지는 광고를 캡처해요</h3>
+          <p>사고 싶지만 확신이 서지 않는 순간이에요.</p>
+        </div>
+      </div>
+
+      <!-- 2. 카톡 전송 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="곁 카카오톡 채널에 캡처를 보내고, 광고가 무엇을 약속하는지 묻는 질문에 ‘연골이 다시 자란다’를 골라 답하는 화면 예시">
+          <div class="screen">
+            <div class="chat-top">
+              <div class="statusbar"><span>2:13</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+              <div class="appbar"><i data-lucide="chevron-left" class="back"></i><svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>곁<span class="sp"><i data-lucide="search"></i><i data-lucide="menu"></i></span></div>
+            </div>
+            <div class="chat">
+              <span class="day">2026년 11월 20일 금요일</span>
+              <div class="msg me"><span class="time">오후 2:13</span><div class="shot"><div class="mini"><b>연골이 다시 자라요</b><span>오늘만 70%</span><i class="p"></i></div></div></div>
+              <div class="msg bot">
+                <svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>
+                <div class="col"><span class="name">곁</span>
+                  <div class="bubble">광고를 받았어요. 식약처 기록과 비교하고 있어요. 끝나면 바로 알려 드릴게요.</div>
+                  <div class="bubble">기다리시는 동안 하나만 여쭤볼게요.<br><b>이 광고가 무엇을 약속하나요?</b></div>
+                </div>
+              </div>
+              <div class="qr"><span class="on">연골이 다시 자란다</span><span>통증이 없어진다</span><span>잘 모르겠어요</span></div>
+            </div>
+            <div class="chat-input"><i data-lucide="plus"></i><span class="field">메시지 입력</span><i data-lucide="smile"></i></div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 2&nbsp;· 화면 예시</span>
+          <h3>평소처럼 카톡으로 보내요</h3>
+          <p>기다리는 동안 광고가 약속하는 것을 가볍게 물어요(계속 둘지는 테스트로 정해요).</p>
+        </div>
+      </div>
+
+      <!-- 3. 결과 카드 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="곁이 결과 카드로 답하는 화면 예시. 카드는 범위 초과 표시와 함께 광고의 말 ‘연골이 다시 자라요’, 식약처 원문 ‘관절 및 연골 건강에 도움을 줄 수 있음’, 차이 ‘다시 자란다까지는 인정되지 않았어요’를 보여주고, 자세히 보고 듣기 버튼을 둬요. 카드 아래에는 하루 뒤 다시 보기, 가족에게 물어보기, 샀어요 세 가지를 같은 모양의 선택지로 둬요.">
+          <div class="screen">
+            <div class="chat-top">
+              <div class="statusbar"><span>2:14</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+              <div class="appbar"><i data-lucide="chevron-left" class="back"></i><svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>곁<span class="sp"><i data-lucide="search"></i><i data-lucide="menu"></i></span></div>
+            </div>
+            <div class="chat">
+              <div class="msg bot">
+                <svg class="chat-av" aria-hidden="true"><use href="#mark"/></svg>
+                <div class="col"><span class="name">곁</span>
+                  <div class="botcard">
+                    <div class="bc-head"><span class="bc-state st-over"><i data-lucide="arrow-up-right"></i>범위 초과</span><h5>광고가 식약처 인정 범위보다 더 말하고 있어요</h5></div>
+                    <div class="bc-body">
+                      <div class="bc-row"><small>광고에서는</small>“연골이 다시 자라요”</div>
+                      <div class="bc-row"><small>식약처에는</small>“관절 및 연골 건강에 도움을 줄 수 있음”</div>
+                      <div class="bc-row"><small>차이</small>‘다시 자란다’까지는 인정되지 않았어요</div>
+                    </div>
+                    <div class="bc-btn"><i data-lucide="volume-2"></i>자세히 보고 듣기</div>
+                  </div>
+                </div>
+              </div>
+              <div class="qr qr-eq"><span>하루 뒤 다시&nbsp;보기</span><span>가족에게 물어보기</span><span>샀어요</span></div>
+            </div>
+            <div class="chat-input"><i data-lucide="plus"></i><span class="field">메시지 입력</span><i data-lucide="smile"></i></div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 3&nbsp;· 화면 예시</span>
+          <h3>결과는 근거부터 보여줘요</h3>
+          <p>광고의 말과 식약처 원문을 나란히 두고, 누르면 큰 글씨로 읽어줘요.</p>
+        </div>
+      </div>
+
+      <!-- 5. 다음 행동 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="다음 행동 세 가지를 같은 크기 버튼으로 고르는 화면 예시">
+          <div class="screen">
+            <div class="statusbar" style="background:var(--paper)"><span>2:16</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+            <div class="web">
+              <div class="urlbar"><i data-lucide="lock"></i>gyeot.example/r/8KQ2</div>
+              <div class="web-body">
+                <div class="web-top"><span class="logo"><svg aria-hidden="true"><use href="#mark"/></svg>곁</span><span class="fs-toggle"><span>가</span><span>가</span><span>가</span></span></div>
+                <div class="cmp diff"><small><i data-lucide="arrow-up-right"></i>정리하면</small><p>광고가 식약처 인정 범위보다 더 말하고 있어요.</p></div>
+                <div class="w-q" style="margin-top:6px">이제 어떻게 할까요?</div>
+                <div class="w-sub">어떤 것을 고르셔도 괜찮아요. 결정은 옥순 님이 하시면 돼요.</div>
+                <div class="w-actions">
+                  <div class="w-btn"><i data-lucide="calendar-clock"></i>하루 뒤 다시 보기</div>
+                  <div class="w-btn"><i data-lucide="users"></i>가족에게 물어보기</div>
+                  <div class="w-btn"><i data-lucide="shopping-bag"></i>샀어요</div>
+                </div>
+                <div class="lock"><i data-lucide="info"></i>‘오늘만 할인’이라는 말이 있어도 하루 미뤄 생각해 볼 수 있어요.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 4&nbsp;· 화면 예시</span>
+          <h3>다음 행동은 본인이 골라요</h3>
+          <p>세 버튼은 크기와 색이 같고, ‘사지&nbsp;마세요’&#8288;라고 하지 않아요.</p>
+        </div>
+      </div>
+
+      <!-- 6. 가족 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="가족이 받은 공유 링크 화면 예시">
+          <div class="screen">
+            <div class="statusbar" style="background:var(--paper)"><span>2:31</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+            <div class="web">
+              <div class="urlbar"><i data-lucide="lock"></i>gyeot.example/ask/3PZ7</div>
+              <div class="web-body">
+                <div class="web-top"><span class="logo"><svg aria-hidden="true"><use href="#mark"/></svg>곁</span></div>
+                <div class="fam-head"><b>어머니가 이 광고에 대해 의견을 물어보셨어요</b><span>오후 2:30 · 어머니가 직접 보낸 링크예요</span></div>
+                <div class="cmp ad"><small><i data-lucide="megaphone"></i>광고에서는</small><p>“연골이 다시 자라요”</p></div>
+                <div class="cmp gov"><small><i data-lucide="landmark"></i>식약처에는</small><p>“관절 및 연골 건강에 도움을 줄 수 있음”</p></div>
+                <div class="fam-reply"><span>같이 생각해 봐요</span><span>전화할게요</span><span>의견 남기기</span></div>
+                <div class="lock"><i data-lucide="shield-check"></i>이 링크에는 어머니가 고른 광고 하나의 비교 결과만 있어요. 다른 기록은 보이지 않아요.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 5&nbsp;· 갈래 ①</span>
+          <h3><span class="h-seg">‘가족에게 물어보기’&#8288;를 고르면,</span> <span class="h-seg">가족은 같은 근거를 보고 의견만 보태요</span></h3>
+          <p>본인이 눌렀을&nbsp;때만 링크가 생기고, 자동 알림은 없어요.</p>
+        </div>
+      </div>
+
+      <!-- 7. 샀어요 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="구매를 기록하고 확인할 날짜를 안내받는 화면 예시. 인터넷·앱에서 샀다면 받은 날부터 7일 안, 예를 들어 11월 23일(월)에 받았다면 11월 30일(월)까지 보통 반품(청약철회)을 할 수 있고, 예외가 있으니 1372 소비자상담센터에서 확인할 수 있다고 안내해요.">
+          <div class="screen">
+            <div class="statusbar" style="background:var(--paper)"><span>2:40</span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+            <div class="web">
+              <div class="urlbar"><i data-lucide="lock"></i>gyeot.example/r/8KQ2/bought</div>
+              <div class="web-body">
+                <div class="web-top"><span class="logo"><svg aria-hidden="true"><use href="#mark"/></svg>곁</span></div>
+                <div class="w-q">알려 주셔서 고마워요. 어디서 사셨어요?</div>
+                <div class="choice on"><span class="dot"></span>인터넷·앱에서</div>
+                <div class="choice"><span class="dot"></span>전화를 받고</div>
+                <div class="choice"><span class="dot"></span>홈쇼핑에서</div>
+                <div class="choice"><span class="dot"></span>체험관·방문 판매로</div>
+                <div class="info-box">
+                  <b>알아 두면 좋은 날짜</b>
+                  <span class="date-chip"><i data-lucide="calendar"></i>받은 날부터 7일 안</span>
+                  <span>인터넷 구매는 보통 이 기간에 반품(청약철회)을 할 수 있어요. <span class="hx-nw">11월 23일(월)에</span> 받았다면 <span class="hx-nw">11월 30일(월)까지예요.</span> 예외가&nbsp;있으니 1372&nbsp;소비자상담센터에서 확인할&nbsp;수 있어요.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 6&nbsp;· 갈래 ②</span>
+          <h3><span class="h-seg">‘샀어요’&#8288;를 고르면,</span> <span class="h-seg">알아&nbsp;둘 권리를 안내해요</span></h3>
+          <p>구매를 막지 않고, 청약철회 같은 알아&nbsp;둘 권리를 안내해요.</p>
+        </div>
+      </div>
+
+      <!-- 8. 알림 -->
+      <div class="scene">
+        <div class="phone" role="img" aria-label="휴대폰 잠금화면에 곁 앱의 하루 뒤 알림이 온 화면 예시">
+          <div class="screen">
+            <div class="lockscreen">
+              <div class="statusbar" style="color:#fff;width:100%"><span></span><span class="sys"><i data-lucide="signal"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i></span></div>
+              <div class="clock">10:00</div>
+              <div class="date">11월 21일 토요일</div>
+              <div class="noti">
+                <div class="n-top"><svg aria-hidden="true"><use href="#mark"/></svg>곁 · 지금</div>
+                <b>어제 보신 광고, 다시 볼까요?</b>
+                <p>마디온 MSM 플러스 광고를 식약처 기록과 비교한 내용이 있어요. 하루 생각해 보신 뒤 정하셔도 돼요.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-cap">
+          <span class="step">STEP 7&nbsp;· 갈래 ③</span>
+          <h3><span class="h-seg">‘하루 뒤 다시 보기’&#8288;를 고르면,</span> <span class="h-seg">다음&nbsp;날 다시 생각할 시간을 드려요</span></h3>
+          <p>알림은 원하는 분만 설치하는 경량 Android&nbsp;앱이 보내요.</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="rail-hint">
+      <i data-lucide="move-horizontal"></i><span>옆으로 넘겨 다음 화면을 보세요</span>
+      <div class="rail-nav"><button type="button" id="prev" aria-label="이전 화면"><i data-lucide="chevron-left"></i></button><button type="button" id="next" aria-label="다음 화면"><i data-lucide="chevron-right"></i></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 결과 유형 ===================== -->
+<section id="states" class="tone-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">04</span>결과 유형</span>
+      <h2 class="h-section"><span class="h-seg">결과는 네 가지예요.</span> <span class="h-seg">모를&nbsp;때는 모른다고 말해요</span></h2>
+      <p class="lead">어떤 광고든 아래 넷 중 하나로 알려요. 색이 아니라 아이콘과 문장으로 구분해요.</p>
+    </div>
+    <ul class="rt-legend reveal" aria-label="결과 유형 네 가지">
+      <li><span class="st st-match"><i data-lucide="circle-check"></i>인정 범위 안</span><span>식약처가 인정한 범위 안에서 말해요</span></li>
+      <li><span class="st st-over"><i data-lucide="arrow-up-right"></i>범위 초과</span><span>인정된 범위보다 더 말해요</span></li>
+      <li><span class="st st-notfn"><i data-lucide="file-x-2"></i>건강기능식품 아님</span><span>일반식품으로 확인돼요</span></li>
+      <li><span class="st st-unknown"><i data-lucide="circle-help"></i>확인 불가</span><span>찾지 못했어요. <b>안전하다는 뜻이 아니에요</b></span></li>
+    </ul>
+    <!-- 결과 유형 카드: 카드 위쪽 미리보기는 결과 카드 '화면 예시'이고, role="img" + aria-label로 내용을 읽어 줘요. -->
+    <div class="rt-states">
+
+      <article class="card rt-state reveal">
+        <div class="rt-plate" role="img" aria-label="인정 범위 안 결과 카드 화면 예시. 광고에서는 ‘관절 건강에 도움을 줄 수 있어요’, 식약처에는 ‘관절 및 연골 건강에 도움을 줄 수 있음’이라고 적혀 있어요. 광고의 말이 인정 범위를 넘지 않아요. 아래에 자세히 보고 듣기 버튼이 있어요.">
+          <span class="rt-plate-cap"><i data-lucide="smartphone"></i>결과 카드 화면 예시</span>
+          <div class="rt-rc">
+            <div class="rt-rc-head">
+              <span class="st st-match rt-chip"><i data-lucide="circle-check"></i>인정 범위 안</span>
+              <span class="rt-rc-title">광고를 식약처 기록과 비교했어요</span>
+            </div>
+            <div class="rt-rc-pair rt-rc-two">
+              <div class="rt-rc-row"><span class="rt-rc-label"><i data-lucide="megaphone"></i>광고에서는</span><span class="rt-rc-text">“관절 건강에 도움을 줄&nbsp;수 있어요”</span></div>
+              <div class="rt-rc-row rt-rc-gov"><span class="rt-rc-label"><i data-lucide="landmark"></i>식약처에는</span><span class="rt-rc-text">“관절 및 연골 건강에 도움을 줄&nbsp;수 있음”</span></div>
+            </div>
+            <div class="rt-rc-diff rt-rc-match"><i data-lucide="circle-check"></i><span>광고의 말이 인정 범위를 넘지 않아요</span></div>
+            <div class="rt-rc-btn"><i data-lucide="volume-2"></i>자세히 보고 듣기</div>
+          </div>
+        </div>
+        <h3 class="rt-state-title">광고가 인정 범위 안에서 말해요</h3>
+        <p class="rt-why">범위 안이라고 꼭 사셔야 한다는 뜻은 아니에요. 그래서 ‘안심하세요’ 같은 말은 붙이지 않아요.</p>
+      </article>
+
+      <article class="card rt-state reveal">
+        <div class="rt-plate" role="img" aria-label="범위 초과 결과 카드 화면 예시. 광고에서는 ‘연골이 다시 자라요’, 식약처에는 ‘관절 및 연골 건강에 도움을 줄 수 있음’이라고 적혀 있어요. ‘다시 자란다’까지는 인정되지 않았어요. 아래에 자세히 보고 듣기 버튼이 있어요.">
+          <span class="rt-plate-cap"><i data-lucide="smartphone"></i>결과 카드 화면 예시</span>
+          <div class="rt-rc">
+            <div class="rt-rc-head">
+              <span class="st st-over rt-chip"><i data-lucide="arrow-up-right"></i>범위 초과</span>
+              <span class="rt-rc-title">광고를 식약처 기록과 비교했어요</span>
+            </div>
+            <div class="rt-rc-pair rt-rc-two">
+              <div class="rt-rc-row"><span class="rt-rc-label"><i data-lucide="megaphone"></i>광고에서는</span><span class="rt-rc-text">“연골이 다시 자라요”</span></div>
+              <div class="rt-rc-row rt-rc-gov"><span class="rt-rc-label"><i data-lucide="landmark"></i>식약처에는</span><span class="rt-rc-text">“관절 및 연골 건강에 도움을 줄&nbsp;수 있음”</span></div>
+            </div>
+            <div class="rt-rc-diff rt-rc-over"><i data-lucide="arrow-up-right"></i><span>‘다시 자란다’&#8288;까지는 인정되지 않았어요</span></div>
+            <div class="rt-rc-btn"><i data-lucide="volume-2"></i>자세히 보고 듣기</div>
+          </div>
+        </div>
+        <h3 class="rt-state-title">광고가 인정 범위보다 더 말해요</h3>
+        <p class="rt-why">질병 예방&#8288;·치료 효능으로 오인하게 하는 표현이나 전문가 추천&#8288;·보증 형식 같은 부당광고 표현은 결과 유형과 관계없이 함께 알려요.</p>
+      </article>
+
+      <article class="card rt-state reveal">
+        <div class="rt-plate" role="img" aria-label="건강기능식품 아님 결과 카드 화면 예시. 식약처 기록에는 건강기능식품 신고 기록이 없고 일반식품이에요. 건강기능식품으로 인정받은 제품이 아니에요. 아래에 자세히 보고 듣기 버튼이 있어요.">
+          <span class="rt-plate-cap"><i data-lucide="smartphone"></i>결과 카드 화면 예시</span>
+          <div class="rt-rc">
+            <div class="rt-rc-head">
+              <span class="st st-notfn rt-chip"><i data-lucide="file-x-2"></i>건강기능식품 아님</span>
+              <span class="rt-rc-title">광고를 식약처 기록과 비교했어요</span>
+            </div>
+            <div class="rt-rc-pair">
+              <div class="rt-rc-row rt-rc-gov"><span class="rt-rc-label"><i data-lucide="landmark"></i>식약처 기록</span><span class="rt-rc-text">건강기능식품 신고 기록 없음&nbsp;· 일반식품</span></div>
+            </div>
+            <div class="rt-rc-diff rt-rc-notfn"><i data-lucide="file-x-2"></i><span>건강기능식품으로 인정받은 제품이 아니에요</span></div>
+            <div class="rt-rc-btn"><i data-lucide="volume-2"></i>자세히 보고 듣기</div>
+          </div>
+        </div>
+        <h3 class="rt-state-title">건강기능식품으로 신고된 제품이 아니에요</h3>
+        <p class="rt-why">‘본 제품은 건강기능식품이 아닙니다’라고 표시하고 원료 기능을 알리는 일반식품도 있어서, 일반식품 품목정보와 함께 확인해요.</p>
+      </article>
+
+      <article class="card rt-state reveal">
+        <div class="rt-plate" role="img" aria-label="확인 불가 결과 카드 화면 예시. 식약처 기록에서 제품을 찾지 못했어요. 못 찾았다고 안전하다는 뜻은 아니에요. 아래에 제품 이름 보이게 다시 보내기 버튼이 있어요.">
+          <span class="rt-plate-cap"><i data-lucide="smartphone"></i>결과 카드 화면 예시</span>
+          <div class="rt-rc">
+            <div class="rt-rc-head">
+              <span class="st st-unknown rt-chip"><i data-lucide="circle-help"></i>확인 불가</span>
+              <span class="rt-rc-title">식약처 기록에서 제품을 찾아봤어요</span>
+            </div>
+            <div class="rt-rc-pair">
+              <div class="rt-rc-row rt-rc-gov"><span class="rt-rc-label"><i data-lucide="landmark"></i>식약처 기록</span><span class="rt-rc-text rt-rc-none"><i data-lucide="search-x"></i>제품을 찾지 못했어요</span></div>
+            </div>
+            <div class="rt-rc-diff rt-rc-unknown"><i data-lucide="circle-help"></i><span>못 찾았다고 안전하다는 뜻은 아니에요</span></div>
+            <div class="rt-rc-btn"><i data-lucide="image-up"></i>제품 이름 보이게 다시 보내기</div>
+          </div>
+        </div>
+        <h3 class="rt-state-title">식약처 기록에서 찾지 못했어요</h3>
+        <p class="rt-why">제품 이름이나 포장이 보이는 화면을 다시 보내면 다시 찾아요. 원료 정보는 제품 근거와 분리해 참고로만 보여줘요.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 선언 띠 · 곁의 원칙 ===================== -->
+<!-- id는 두지 않아요. main.js가 main section[id]를 보고 상단 내비를 켜는데, 내비 항목이 없는 띠가 끼면 모든 항목이 꺼져요. -->
+<section class="mf-band tone-ink">
+  <!-- 장식: 긴 툇마루 위에 나란히 앉은 두 사람 (로고의 두 점과 선을 길게 편 모양). 1180px 이상에서만 보여요. -->
+  <div class="mf-motif" aria-hidden="true"><span class="mf-dot-a"></span><span class="mf-dot-b"></span><span class="mf-floor"></span></div>
+  <div class="wrap mf-inner reveal">
+    <p class="eyebrow mf-label"><svg class="mf-glyph" viewBox="7 12 26 20" aria-hidden="true" focusable="false"><circle cx="15" cy="17" r="4.5"/><circle cx="25.5" cy="17" r="4.5"/><path d="M9 29h22"/></svg>곁의 원칙</p>
+    <h2 class="mf-statement"><span class="mf-pre"><span class="mf-unit">디지털&#8288;·AI 시대에도 어르신은</span> <span class="mf-unit">보호의 대상이기 전에,</span></span> <span class="mf-key">스스로 결정하는 소비자예요.</span></h2>
+    <p class="mf-support"><span>기술이 늘어날수록 스스로 판단할 권리도 함께 지켜져야 해요. 곁은 그 판단에 필요한 근거를 옆에서 함께 봐요.</span></p>
+  </div>
+</section>
+
+<!-- ===================== 사용자 ===================== -->
+<!-- 초상은 일러스트 스프라이트의 #il-oksun, #il-daughter를 써요. 스프라이트는 index.html 맨 위에 한 번만 넣어요. -->
+<section id="users" class="tone-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">05</span>사용자</span>
+      <h2 class="h-section"><span class="h-seg">주인공은 고령 사용자,</span> <span class="h-seg">가족은 두&nbsp;번째 의견이에요</span></h2>
+      <p class="lead">아래 인물은 서비스 설계를 위한 가상의 페르소나예요.</p>
+    </div>
+
+    <div class="ps-grid">
+
+      <!-- 주 사용자 · 정옥순 님 -->
+      <article class="card ps-card ps-main reveal" aria-labelledby="ps-oksun-name">
+        <div class="ps-head">
+          <div class="ps-id">
+            <h3 class="ps-name" id="ps-oksun-name">정옥순 님 <span class="ps-age">74세</span></h3>
+            <p class="ps-role"><span class="ps-role-tag">주 사용자</span><span class="ps-role-txt">혼자 있는 낮 시간이 긴 소비자</span></p>
+          </div>
+          <div class="ps-portrait">
+            <svg class="ps-face" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="#il-oksun"/></svg>
+            <span class="ps-fict">가상 인물</span>
+          </div>
+          <ul class="ps-chips" aria-label="옥순 님의 휴대폰 생활">
+            <li class="ps-chip"><i data-lucide="smartphone"></i>Android 휴대폰</li>
+            <li class="ps-chip"><i data-lucide="a-large-small"></i>글자 크게</li>
+            <li class="ps-chip"><i data-lucide="users-round"></i>카톡 가족방</li>
+            <li class="ps-chip"><i data-lucide="monitor-play"></i>유튜브 건강 채널 하루 2시간+</li>
+          </ul>
+        </div>
+
+        <div class="ps-body">
+          <blockquote class="ps-quote"><p>“사도 되는지 물어보면 딸이 또 잔소리할 것 같아서요. 그래도 확인은 해&nbsp;보고 싶어요.”</p></blockquote>
+
+
+          <div class="ps-gp">
+            <div class="ps-gp-col ps-want">
+              <h4 class="ps-gp-t"><span class="ps-gp-ic" aria-hidden="true"><i data-lucide="target"></i></span>바라는 것</h4>
+              <ul>
+                <li>내 돈과 건강에 관한 결정은 내가 하고 싶어요.</li>
+                <li>근거가 있으면 스스로 판단할&nbsp;수 있어요.</li>
+              </ul>
+            </div>
+            <div class="ps-gp-col ps-hard">
+              <h4 class="ps-gp-t"><span class="ps-gp-ic" aria-hidden="true"><i data-lucide="puzzle"></i></span>어려운 점</h4>
+              <ul>
+                <li>“의사가 추천”, “오늘만 70%” 같은 말이 사실인지 확인할 방법이 없어요.</li>
+                <li>새 앱을 깔고 배우는 건 부담스러워요.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 옥순 님의 하루 · 광고를 만나는 때가 혼자 있는 낮이라는 걸 보여줘요 -->
+      <article class="card ps-day reveal" aria-labelledby="ps-day-title">
+        <div class="ps-day-head">
+          <svg class="ps-day-face" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="#il-oksun"/></svg>
+          <div>
+            <h3 id="ps-day-title">옥순 님의 하루</h3>
+            <p>가상 인물의 평일이에요.</p>
+          </div>
+        </div>
+
+        <ol class="ps-tl">
+          <li class="ps-seg ps-seg-am">
+            <p class="ps-seg-t"><i data-lucide="sun"></i>오전&nbsp;· 바깥 활동</p>
+            <ol class="ps-evs">
+              <li class="ps-ev">
+                <span class="ps-node" aria-hidden="true"><i data-lucide="footprints"></i></span>
+                <div class="ps-ev-txt"><time datetime="07:00">07:00</time><p class="ps-what">동네 산책</p></div>
+              </li>
+              <li class="ps-ev">
+                <span class="ps-node" aria-hidden="true"><i data-lucide="person-standing"></i></span>
+                <div class="ps-ev-txt"><time datetime="10:00">10:00</time><p class="ps-what">복지관 체조 교실</p></div>
+              </li>
+            </ol>
+          </li>
+          <li class="ps-seg ps-seg-alone">
+            <p class="ps-seg-t"><i data-lucide="user-round"></i>낮&nbsp;· 혼자 있는 시간</p>
+            <ol class="ps-evs">
+              <li class="ps-ev">
+                <span class="ps-node" aria-hidden="true"><i data-lucide="monitor-play"></i></span>
+                <div class="ps-ev-txt"><time datetime="13:00">13:00</time><p class="ps-what">가족 모두 외출, <span class="ps-nb">혼자 유튜브</span></p></div>
+              </li>
+              <li class="ps-ev ps-ev-key">
+                <span class="ps-node" aria-hidden="true"><i data-lucide="megaphone"></i></span>
+                <div class="ps-ev-txt"><time datetime="14:12">14:12</time><p class="ps-what">광고를 보고 망설임</p></div>
+              </li>
+            </ol>
+            <!-- 14:12를 가리키는 설명. 넓은 화면에서는 낮 구간 너비만큼 펼쳐져요 -->
+            <div class="ps-key"><p class="ps-key-t">광고를 만나는 시간: <span class="ps-nb">혼자 있는 낮</span></p><p class="ps-key-note">이때 물어볼 <span class="ps-nb">사람이 없어요</span></p></div>
+          </li>
+          <li class="ps-seg ps-seg-pm">
+            <p class="ps-seg-t"><i data-lucide="users-round"></i>저녁&nbsp;· 가족과 함께</p>
+            <ol class="ps-evs">
+              <li class="ps-ev">
+                <span class="ps-node" aria-hidden="true"><i data-lucide="house"></i></span>
+                <div class="ps-ev-txt"><time datetime="19:00">19:00</time><p class="ps-what">가족 귀가&#8288;·저녁</p></div>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </article>
+
+      <div class="ps-side">
+        <!-- 두 번째 의견 · 딸 -->
+        <article class="card ps-card ps-fam reveal" aria-labelledby="ps-dau-name">
+          <div class="ps-head">
+            <div class="ps-id">
+              <h3 class="ps-name" id="ps-dau-name">딸 <span class="ps-age">47세</span></h3>
+              <p class="ps-role"><span class="ps-role-tag">두 번째 의견</span><span class="ps-role-txt">감시하고 싶지는 않은 가족</span></p>
+            </div>
+            <div class="ps-portrait">
+              <svg class="ps-face" viewBox="0 0 160 160" aria-hidden="true" focusable="false"><use href="#il-daughter"/></svg>
+              <span class="ps-fict">가상 인물</span>
+            </div>
+            <ul class="ps-chips" aria-label="딸의 상황">
+              <li class="ps-chip"><i data-lucide="briefcase-business"></i>직장인</li>
+              <li class="ps-chip"><i data-lucide="phone-off"></i>낮에는 연락이 어려움</li>
+              <li class="ps-chip"><i data-lucide="heart-handshake"></i>엄마의 결정을 존중하고 싶음</li>
+            </ul>
+          </div>
+
+          <div class="ps-body">
+            <blockquote class="ps-quote"><p>“말리기보다 같이 보고 싶어요. 엄마가 물어볼&nbsp;때 바로 근거를 볼&nbsp;수 있으면 좋겠어요.”</p></blockquote>
+
+            <div class="ps-block">
+              <h4 class="ps-block-t"><i data-lucide="hand-helping"></i>곁에서 하는 일</h4>
+              <ol class="ps-steps">
+                <li><span class="ps-step-ic" aria-hidden="true"><i data-lucide="link"></i></span>어머니가 보낸 링크 하나로</li>
+                <li><span class="ps-step-ic" aria-hidden="true"><i data-lucide="landmark"></i></span>같은 근거를 보고</li>
+                <li><span class="ps-step-ic" aria-hidden="true"><i data-lucide="pen-line"></i></span>의견을 남기거나 전화해요</li>
+              </ol>
+              <p class="ps-lock"><i data-lucide="lock"></i>본인이 버튼을 눌렀을&nbsp;때만, 고른 광고 하나의 비교 결과만 공유돼요. 화면이나 구매를 지켜보는 기능은 만들지 않아요.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 여정 ===================== -->
+<section id="journey" class="tone-white">
+  <!-- 곡선 범례 기호 (곁이 없을 때: 점선 + 빈 점 / 곁과 함께: 실선 + 채운 점) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="jr-key-a" viewBox="0 0 36 14"><path d="M1 7H35" fill="none" stroke="#4A4F55" stroke-width="2" stroke-dasharray="5 4"/><circle cx="18" cy="7" r="4.5" fill="#fff" stroke="#4A4F55" stroke-width="2"/></symbol>
+    <symbol id="jr-key-b" viewBox="0 0 36 14"><path d="M1 7H35" fill="none" stroke="#1F4FA3" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="7" r="5.5" fill="#1F4FA3" stroke="#fff" stroke-width="2"/></symbol>
+  </svg>
+
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">06</span>여정</span>
+      <h2 class="h-section">같은 광고, 다른 하루</h2>
+      <p class="lead">가상 인물 정옥순 님이 혼자 있는 평일 오후에 관절 영양제 광고를 만나요. 곁이 없을&nbsp;때와 곁과 함께일&nbsp;때를 단계별로 나란히 놓았어요.</p>
+    </div>
+
+    <div class="jr-map reveal">
+      <!-- 행 제목: 넓은 화면에서만 보여요. 각 칸에도 같은 이름이 들어 있어 화면 낭독기에는 숨겨요 -->
+      <div class="jr-heads" aria-hidden="true">
+        <div class="jr-head jr-head-who">
+          <svg class="jr-ava" viewBox="0 0 160 160" aria-hidden="true"><use href="#il-oksun"/></svg>
+          <b>정옥순 님</b>
+          <span>74세&nbsp;· 가상 인물</span>
+        </div>
+        <div class="jr-head jr-head-a"><svg class="jr-key"><use href="#jr-key-a"/></svg><b>곁이 없을 때</b><span>물어볼 곳 없이</span></div>
+        <div class="jr-head jr-head-b"><svg class="jr-key"><use href="#jr-key-b"/></svg><b>곁과 함께</b><span>근거를 옆에 두고</span></div>
+        <div class="jr-head jr-head-t"><i data-lucide="lightbulb"></i><b>달라지는 것</b></div>
+      </div>
+
+      <!-- 마음 곡선 (가설) -->
+      <figure class="jr-curve">
+        <figcaption class="jr-cap">
+          <span class="jr-cap-title">마음의 변화</span>
+          <span class="jr-hypo"><i data-lucide="flask-conical"></i><span><b>가설</b>&nbsp;· 사용자&nbsp;테스트로 검증할 예정</span></span>
+          <span class="jr-legend" aria-hidden="true">
+            <span><svg class="jr-key"><use href="#jr-key-a"/></svg>곁이 없을 때</span>
+            <span><svg class="jr-key"><use href="#jr-key-b"/></svg>곁과 함께</span>
+          </span>
+        </figcaption>
+
+        <div class="jr-plot" role="img" aria-label="가설로 그린 마음의 변화 곡선이에요. 두 경우 모두 보통에서 시작해요. 곁이 없을 때는 불안 쪽으로 내려가 끝까지 낮게 머물러요. 곁과 함께일 때는 확인한 뒤부터 편안 쪽으로 올라가요.">
+          <svg class="jr-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <!-- 가로 눈금은 97.5%에서 멈춰요. 넓은 화면에서 곡선 칸이 카드 오른쪽 테두리까지 닿아, 선이 테두리에 붙지 않게 -->
+            <path class="jr-grid" d="M0 8H97.5M0 50H97.5M0 92H97.5"/>
+            <path class="jr-guide" d="M10 0V100M30 0V100M50 0V100M70 0V100M90 0V100"/>
+            <polyline class="jr-line-a" points="10,50 30,71 50,71 70,81.5 90,81.5"/>
+            <polyline class="jr-line-b" points="10,50 30,60.5 50,39.5 70,29 90,24.8"/>
+          </svg>
+          <span class="jr-y jr-y-hi">편안</span>
+          <span class="jr-y jr-y-lo">불안</span>
+          <!-- 값 1~5 → 세로 위치 8 + (5 − 값) × 21 (%) -->
+          <span class="jr-pt jr-pt-a" data-s="1" style="--x:10;--y:50"></span>
+          <span class="jr-pt jr-pt-a" data-s="2" style="--x:30;--y:71"></span>
+          <span class="jr-pt jr-pt-a" data-s="3" style="--x:50;--y:71"></span>
+          <span class="jr-pt jr-pt-a" data-s="4" style="--x:70;--y:81.5"></span>
+          <span class="jr-pt jr-pt-a" data-s="5" style="--x:90;--y:81.5"></span>
+          <span class="jr-pt jr-pt-b" data-s="1" style="--x:10;--y:50"></span>
+          <span class="jr-pt jr-pt-b" data-s="2" style="--x:30;--y:60.5"></span>
+          <span class="jr-pt jr-pt-b" data-s="3" style="--x:50;--y:39.5"></span>
+          <span class="jr-pt jr-pt-b" data-s="4" style="--x:70;--y:29"></span>
+          <span class="jr-pt jr-pt-b" data-s="5" style="--x:90;--y:24.8"></span>
+          <span class="jr-dl jr-dl-b">곁과 함께</span>
+          <span class="jr-dl jr-dl-a">곁이 없을 때</span>
+        </div>
+
+        <!-- 좁은 휴대폰(420px 이하)에서는 칸이 좁아 짧은 이름(.jr-x-s)으로 바꿔요. 화면 읽기 프로그램에는 아래 표가 읽혀요 -->
+        <ol class="jr-xaxis" aria-hidden="true">
+          <li><b>1</b><span class="jr-x-l">광고를 봐요</span><span class="jr-x-s">광고</span></li>
+          <li><b>2</b><span class="jr-x-l">마음이 흔들려요</span><span class="jr-x-s">흔들림</span></li>
+          <li><b>3</b><span class="jr-x-l">확인하고 싶어요</span><span class="jr-x-s">확인</span></li>
+          <li><b>4</b><span class="jr-x-l">결정해요</span><span class="jr-x-s">결정</span></li>
+          <li><b>5</b><span class="jr-x-l">그 뒤</span><span class="jr-x-s">그 뒤</span></li>
+        </ol>
+
+        <!-- 표는 1px 상자(div.sr-only) 안에 넣어요. 표에 바로 sr-only를 주면 표가 제 너비(약 300px)를 지켜 좁은 화면 밖으로 삐져나가요 -->
+        <div class="sr-only">
+        <table>
+          <caption>마음의 변화 가설 값 · 1은 불안, 5는 편안</caption>
+          <thead><tr><th scope="col">단계</th><th scope="col">곁이 없을 때</th><th scope="col">곁과 함께</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1 광고를 봐요</th><td>3</td><td>3</td></tr>
+            <tr><th scope="row">2 마음이 흔들려요</th><td>2</td><td>2.5</td></tr>
+            <tr><th scope="row">3 확인하고 싶어요</th><td>2</td><td>3.5</td></tr>
+            <tr><th scope="row">4 결정해요</th><td>1.5</td><td>4</td></tr>
+            <tr><th scope="row">5 그 뒤</th><td>1.5</td><td>4.2</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </figure>
+
+      <!-- 단계별 내용 -->
+      <ol class="jr-stages" role="list">
+        <li class="jr-stage" data-s="1">
+          <div class="jr-sh"><h3><span class="jr-no">1</span>광고를 봐요</h3><p class="jr-time">오후 2:12</p></div>
+          <div class="jr-cell jr-a">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-a"/></svg>곁이 없을 때</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“연골이 다시 자란다고?”</p>
+            <p class="jr-do">유튜브에서 ‘연골이 다시 자라요’ 광고를 봐요.</p>
+          </div>
+          <div class="jr-cell jr-b">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-b"/></svg>곁과 함께</h4>
+            <p class="jr-do">같은 광고를 봐요.</p>
+          </div>
+          <div class="jr-take"><h4 class="jr-lane"><i data-lucide="lightbulb"></i>달라지는 것</h4><p>여기까지는 같아요. 곁은 광고를 막지 않아요.</p></div>
+          <button type="button" class="jr-toggle" aria-expanded="false"><i data-lucide="chevron-down"></i><span>두 경우 자세히 보기</span></button>
+        </li>
+
+        <li class="jr-stage" data-s="2">
+          <div class="jr-sh"><h3><span class="jr-no">2</span>마음이 흔들려요</h3><p class="jr-time">오후 2:12</p></div>
+          <div class="jr-cell jr-a">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-a"/></svg>곁이 없을 때</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“오늘만 70%&#8288;라니, 지금 사야 하나”</p>
+            <p class="jr-do">‘오늘만 70%’&#8288;에 마음이 급해져요.</p>
+          </div>
+          <div class="jr-cell jr-b">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-b"/></svg>곁과 함께</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“살지 말지, 확인부터 해 볼까”</p>
+            <p class="jr-do">망설여질&nbsp;때 화면을 캡처해요.</p>
+          </div>
+          <div class="jr-take"><h4 class="jr-lane"><i data-lucide="lightbulb"></i>달라지는 것</h4><p>망설임이 ‘확인’&#8288;으로 이어져요.</p></div>
+          <button type="button" class="jr-toggle" aria-expanded="false"><i data-lucide="chevron-down"></i><span>두 경우 자세히 보기</span></button>
+        </li>
+
+        <li class="jr-stage" data-s="3">
+          <div class="jr-sh"><h3><span class="jr-no">3</span>확인하고 싶어요</h3><p class="jr-time">오후 2:13</p></div>
+          <div class="jr-cell jr-a">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-a"/></svg>곁이 없을 때</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“진짜일까? 딸에게 물으면 또 잔소리하겠지”</p>
+            <p class="jr-do">물어볼 곳이 없어요.</p>
+          </div>
+          <div class="jr-cell jr-b">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-b"/></svg>곁과 함께</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“곁에 보내 보면 알겠지”</p>
+            <p class="jr-do">카카오톡으로 곁에 보내고, 광고의 말과 식약처 원문을 나란히 봐요.</p>
+          </div>
+          <div class="jr-take"><h4 class="jr-lane"><i data-lucide="lightbulb"></i>달라지는 것</h4><p>물어볼 곳이 생겨요.</p></div>
+          <button type="button" class="jr-toggle" aria-expanded="false"><i data-lucide="chevron-down"></i><span>두 경우 자세히 보기</span></button>
+        </li>
+
+        <li class="jr-stage" data-s="4">
+          <div class="jr-sh"><h3><span class="jr-no">4</span>결정해요</h3><p class="jr-time">오후 2:16</p></div>
+          <div class="jr-cell jr-a">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-a"/></svg>곁이 없을 때</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“말리면 서운하고, 혼자 사자니 걱정돼”</p>
+            <p class="jr-do">혼자 결제하거나, 가족이 말려서 포기해요.</p>
+          </div>
+          <div class="jr-cell jr-b">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-b"/></svg>곁과 함께</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“하루 더 <span class="jr-nb">생각해 보고</span> 정할래”</p>
+            <p class="jr-do">하루 뒤 다시 보기&#8288;·가족에게 물어보기&#8288;·샀어요 중에서 스스로 골라요.</p>
+          </div>
+          <div class="jr-take"><h4 class="jr-lane"><i data-lucide="lightbulb"></i>달라지는 것</h4><p>결정권은 그대로 본인에게 있어요.</p></div>
+          <button type="button" class="jr-toggle" aria-expanded="false"><i data-lucide="chevron-down"></i><span>두 경우 자세히 보기</span></button>
+        </li>
+
+        <li class="jr-stage" data-s="5">
+          <div class="jr-sh"><h3><span class="jr-no">5</span>그 뒤</h3><p class="jr-time">다음 날 오전 10:00</p></div>
+          <div class="jr-cell jr-a">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-a"/></svg>곁이 없을 때</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“괜히 샀나”</p>
+            <p class="jr-do">불안한데, 반품 기한도 몰라요.</p>
+          </div>
+          <div class="jr-cell jr-b">
+            <h4 class="jr-lane"><svg class="jr-key" aria-hidden="true"><use href="#jr-key-b"/></svg>곁과 함께</h4>
+            <p class="jr-think"><span class="sr-only">속마음 </span>“알고 고르니 마음이 편하네”</p>
+            <p class="jr-do">하루 뒤 알림을 받고 다시 <span class="jr-nb">본 뒤</span> 정해요. 샀다면 <span class="jr-nb">청약철회 날짜도</span> 안내받아요.</p>
+          </div>
+          <div class="jr-take"><h4 class="jr-lane"><i data-lucide="lightbulb"></i>달라지는 것</h4><p>하루 뒤 다시 보고, 샀다면 챙길 날짜도 알아요.</p></div>
+          <button type="button" class="jr-toggle" aria-expanded="false"><i data-lucide="chevron-down"></i><span>두 경우 자세히 보기</span></button>
+        </li>
+      </ol>
+    </div>
+
+    <div class="jr-foot reveal">
+      <p class="note"><i data-lucide="flask-conical"></i><span>마음의 변화 곡선은 팀원이 할머니 곁에서 본 장면과 사전 조사로 세운 가설이에요. 사용자 테스트에서 확인할 예정이에요.</span></p>
+      <a class="btn btn-ghost" href="#demo"><i data-lucide="arrow-down"></i>화면으로 따라가 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 디자인 ===================== -->
+<section id="design" class="tone-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">07</span>디자인 시스템</span>
+      <h2 class="h-section"><span class="h-seg">‘시니어 모드’&#8288;가 아니라,</span> <span class="h-seg">처음부터 모두에게 편한 화면</span></h2>
+    </div>
+
+    <!-- 디자인 컨셉 카드 · 툇마루. 넓은 화면: 위 줄은 설명 | 툇마루 장면, 아래 줄은 로고 | 그림에서 고른 색. 좁은 화면: 설명 → 장면 → 색 → 로고. -->
+    <div class="card ba-concept reveal">
+      <div class="ba-concept-copy">
+        <span class="tag">디자인 컨셉</span>
+        <h3 class="ba-concept-title">툇마루</h3>
+        <p>툇마루는 집 안과 밖 사이, 옆에 나란히 앉아 이야기를 나누는 자리예요. 곁의 화면도 그래요. 가르치거나 막아서지 않고, 옆에 앉아 같은 광고를 함께 들여다봐요.</p>
+        <p>따뜻한 종이색 바탕에 신뢰를 주는 먹빛 파랑을 쓰고, 병원처럼 차갑거나 아이처럼 유치한 느낌은 피해요. 로고는 툇마루에 나란히 앉은 두 사람이에요.</p>
+      </div>
+
+      <figure class="ba-concept-fig">
+        <svg class="ba-scene" viewBox="0 0 640 400" role="img" aria-label="툇마루 장면. 방석에 앉아 휴대폰을 보는 가상 인물 정옥순 님 옆 방석에, 곁의 결과 카드가 나란히 놓여 있어요." focusable="false"><use href="#il-scene"/></svg>
+        <figcaption>그림 속 인물은 가상이에요.</figcaption>
+      </figure>
+
+      <div class="ba-pal">
+        <p class="ba-pal-label" id="ba-pal-label">툇마루에서 고른 네 가지 색</p>
+        <ul class="ba-pal-list" aria-labelledby="ba-pal-label">
+          <li class="ba-sw-paper"><span class="ba-pal-chip" aria-hidden="true"></span><b>종이</b><span class="sr-only">, 그림 속</span><span>창호지</span></li>
+          <li class="ba-sw-primary"><span class="ba-pal-chip" aria-hidden="true"></span><b>먹빛 파랑</b><span class="sr-only">, 그림 속</span><span>방석</span></li>
+          <li class="ba-sw-ink"><span class="ba-pal-chip" aria-hidden="true"></span><b>먹</b><span class="sr-only">, 그림 속</span><span>안경테</span></li>
+          <li class="ba-sw-accent"><span class="ba-pal-chip" aria-hidden="true"></span><b>감빛</b><span class="sr-only">, 그림 속</span><span>카디건</span></li>
+        </ul>
+      </div>
+
+      <div class="ba-lockup">
+        <svg class="ba-lockup-mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>
+        <div class="ba-lockup-text">
+          <p class="ba-lockup-name">곁 <span lang="en">GYEOT</span></p>
+          <p class="ba-lockup-tag">곁에서 같이 확인해요</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 원칙 여섯 개의 제목(h4)이 ‘툇마루’ 아래에 묶여 읽히지 않도록, 화면 읽기 프로그램용 제목을 둬요 -->
+    <h3 class="sr-only">디자인 원칙</h3>
+    <div class="principles">
+      <div class="principle reveal"><span class="ic"><i data-lucide="type"></i></span><h4>본문 18px, 줄간격 1.6</h4><p>정부 디자인 시스템(KRDS) 기본 17px보다 크게 시작하고, 글자를 200%&#8288;까지 키워도 화면이 깨지지 않게 만들어요.</p></div>
+      <div class="principle reveal"><span class="ic"><i data-lucide="pointer"></i></span><h4>누르는 곳은 48px 이상</h4><p>주 버튼은 높이 56px, 화면 너비만큼. 글자만 있는 링크형 버튼은 쓰지 않아요.</p></div>
+      <div class="principle reveal"><span class="ic"><i data-lucide="contrast"></i></span><h4>글자 대비 7:1 목표</h4><p>노화로 대비 감도가 떨어지는 점을 고려해 서비스 화면의 본문과 결과 상태 색은 7:1 이상으로 맞췄어요.</p></div>
+      <div class="principle reveal"><span class="ic"><i data-lucide="tags"></i></span><h4>아이콘에는 항상 글자</h4><p>5초 안에 뜻이 떠오르지 않는 아이콘은 쓰지 않고, 모든 아이콘 옆에 글자 라벨을 붙여요.</p></div>
+      <div class="principle reveal"><span class="ic"><i data-lucide="square-dashed"></i></span><h4>한 화면에 결정 하나</h4><p>다음 행동 버튼은 세 개 이하로 두고, 동등한 선택지에는 강조 위계를 두지 않아요.</p></div>
+      <div class="principle reveal"><span class="ic"><i data-lucide="volume-2"></i></span><h4>소리는 누를&nbsp;때만</h4><p>자동 재생은 하지 않아요. 읽는 문장을 짚어 주고 속도는 세 단계로 바꿀&nbsp;수 있어요.</p></div>
+    </div>
+
+    <details class="more reveal">
+      <summary><i data-lucide="chevrons-down"></i><span>색&#8288;·글자 크기&#8288;·상태 표시&#8288;·말하는 방식 자세히 보기</span></summary>
+    <div class="ds-grid">
+      <div class="card full">
+        <h3 class="ds-title"><i data-lucide="palette"></i>색&nbsp;· 대비는 흰 배경 기준, 결과 상태는 옅은 바탕 위</h3>
+        <div class="swatches">
+          <div class="sw"><div class="chip" style="background:#FAF6F0;color:#2B2F33">종이</div><div class="meta"><b>배경</b><code>#FAF6F0</code></div></div>
+          <div class="sw"><div class="chip" style="background:#2B2F33;color:#fff">본문</div><div class="meta"><b>글자 13.5:1</b><code>#2B2F33</code></div></div>
+          <div class="sw"><div class="chip" style="background:#1F4FA3;color:#fff">먹빛 파랑</div><div class="meta"><b>주색&#8288;·버튼 7.8:1</b><code>#1F4FA3</code></div></div>
+          <div class="sw"><div class="chip" style="background:#B4581F;color:#fff">감빛</div><div class="meta"><b>소개용 장식</b><code>#B4581F</code></div></div>
+          <div class="sw"><div class="chip" style="background:#EAF4EE;color:#1B5634">인정 범위 안</div><div class="meta"><b>7.7:1</b><code>글자 #1B5634<br>바탕 #EAF4EE</code></div></div>
+          <div class="sw"><div class="chip" style="background:#FDF1E1;color:#7A4100">범위 초과</div><div class="meta"><b>7.3:1</b><code>글자 #7A4100<br>바탕 #FDF1E1</code></div></div>
+          <div class="sw"><div class="chip" style="background:#E8EEF5;color:#2F4157">건강기능식품 아님</div><div class="meta"><b>8.9:1</b><code>글자 #2F4157<br>바탕 #E8EEF5</code></div></div>
+          <div class="sw"><div class="chip" style="background:#EFEEF3;color:#4A4458;outline:1.5px dashed #4A4458;outline-offset:-6px;padding:8px 14px">확인 불가</div><div class="meta"><b>8.0:1&nbsp;· 점선</b><code>글자 #4A4458<br>바탕 #EFEEF3</code></div></div>
+        </div>
+        <p class="note" style="margin-top:16px">신호등 색(빨강&#8288;·노랑&#8288;·초록)은 쓰지 않아요. 네 결과 유형은 명도가 비슷한 옅은 바탕에 서로 다른 아이콘을 붙여, 색만으로 구분하지 않아요.</p>
+      </div>
+
+      <div class="card">
+        <h3 class="ds-title"><i data-lucide="type"></i>글자 크기 (모바일)</h3>
+        <div class="type-row"><code>제목 1 · 28</code><span style="font-size:28px;font-weight:700;color:var(--ink);line-height:1.35">비교해 봤어요</span></div>
+        <div class="type-row"><code>제목 2 · 24</code><span style="font-size:24px;font-weight:700;color:var(--ink);line-height:1.35">이제 어떻게 할까요?</span></div>
+        <div class="type-row"><code>카드 · 20</code><span style="font-size:20px;font-weight:700;color:var(--ink)">“연골이 다시 자라요”</span></div>
+        <div class="type-row"><code>본문 · 18</code><span style="font-size:18px">어떤 것을 고르셔도 괜찮아요.</span></div>
+        <div class="type-row"><code>출처 · 16</code><span style="font-size:16px;color:var(--text-sub)">식품안전나라&nbsp;· 2026.11.20 조회</span></div>
+        <p class="note" style="margin-top:12px">Pretendard&nbsp;· 자간&nbsp;0</p>
+      </div>
+
+      <div class="card">
+        <h3 class="ds-title"><i data-lucide="square-mouse-pointer"></i>상태와 버튼</h3>
+        <div class="state-demo">
+          <div class="row"><span class="st st-match"><i data-lucide="circle-check"></i>인정 범위 안</span><p>원 안의 체크</p></div>
+          <div class="row"><span class="st st-over"><i data-lucide="arrow-up-right"></i>범위 초과</span><p>오른쪽 위로 뻗는 화살표&nbsp;· 범위를 넘었다는 뜻</p></div>
+          <div class="row"><span class="st st-notfn"><i data-lucide="file-x-2"></i>건강기능식품 아님</span><p>X가 그어진 문서&nbsp;· 회청색</p></div>
+          <div class="row"><span class="st st-unknown"><i data-lucide="circle-help"></i>확인 불가</span><p>점선 + 물음표&nbsp;· 빈칸이라는 뜻</p></div>
+        </div>
+        <div class="btn-demo" style="margin-top:20px">
+          <div class="w-btn"><i data-lucide="calendar-clock"></i>하루 뒤 다시 보기</div>
+          <div class="w-btn"><i data-lucide="users"></i>가족에게 물어보기</div>
+        </div>
+        <p class="note" style="margin-top:12px">경고 삼각형과 느낌표는 쓰지 않아요. 버튼 라벨은 행동을 나타내는 동사로 끝나요.</p>
+      </div>
+
+      <div class="card full">
+        <h3 class="ds-title"><i data-lucide="quote"></i>말하는 방식</h3>
+        <div class="dodont-list">
+          <div class="dodont">
+            <div class="dont"><h4><i data-lucide="x"></i>이렇게 말하지 않아요</h4><p>허위광고 위험! 구매하지 마세요</p></div>
+            <div class="do"><h4><i data-lucide="check"></i>이렇게 말해요</h4><p>광고가 식약처 인정 범위보다 더 말하고 있어요.</p></div>
+          </div>
+          <div class="dodont">
+            <div class="dont"><h4><i data-lucide="x"></i>이렇게 말하지 않아요</h4><p>어르신, 시니어 모드로 쉽게 보세요!</p></div>
+            <div class="do"><h4><i data-lucide="check"></i>이렇게 말해요</h4><p>글자 크기는 화면 위 ‘가’ 버튼으로 바꿀&nbsp;수 있어요.</p></div>
+          </div>
+        </div>
+        <div class="evidence">
+          <b>문장 규칙</b>&nbsp;· 해요체&nbsp;· 한 문장에 정보 하나(8~12어절, 최대 15어절)&nbsp;· 전문용어는 쉬운 말 다음 괄호에&nbsp;· ‘위험’, ‘사기’, ‘절대’, 느낌표 쓰지 않기
+          <ul>
+            <li>근거: 행정안전부 한국형 디자인 시스템(KRDS) 타이포&#8288;·색상&#8288;·디지털 포용 기준, KWCAG 2.2, WCAG 2.2(1.4.12, 2.5.5)</li>
+            <li>서울디지털재단 고령층 친화 디지털 접근성 표준, 금융위 고령자 친화 금융앱 가이드라인 및 ‘고령자모드→간편모드’ 개명(2023)</li>
+            <li>Nielsen Norman Group 고령 사용자 사용성 연구, 토스 시니어 사용성 리서치, NHS&#8288;·GOV.UK 쉬운 글쓰기 기준, 경고 습관화 연구(Anderson&#8288;·Vance 외)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== 구조 ===================== -->
+<section id="architecture" class="tone-ink">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">08</span>서비스 구조</span>
+      <h2 class="h-section">판정 서버는 하나, 입구는 여럿</h2>
+      <p class="lead">카카오톡 채널과 웹이 기본 입구이고, 경량 Android&nbsp;앱이 공유하기&nbsp;입력과 알림을 맡아요. 모두 같은 판정 서버를 써요.</p>
+    </div>
+
+    <!-- 서비스 구조 그림: 글자를 SVG에 넣지 않고 HTML로 써서 어느 너비에서도 제목 17px · 설명 16px 그대로예요.
+         위에서 아래로 입구 → 판정 서버(다섯 단계 · 원칙 · 쓰는 데이터) → 결과 순서로 읽어요. -->
+    <figure class="diagram arch reveal">
+      <figcaption class="sr-only">곁 서비스 구조. 입구 세 곳에서 들어온 광고 캡처가 판정 서버의 다섯 단계를 거쳐 결과 네 가지로 나가요. 판정 서버는 식품안전나라 데이터, 부당광고 표현 규칙 사전, LLM API를 써요.</figcaption>
+
+      <div class="arch-part">
+        <p class="arch-k">입구</p>
+        <ul class="arch-boxes arch-in">
+          <li><b>카카오톡 채널</b><span>캡처 사진 보내기&nbsp;· 기본</span></li>
+          <li><b>웹</b><span>사진 올리기&nbsp;· 결과 보기</span></li>
+          <li><b>Android 경량 앱</b><span>공유하기 입력&nbsp;· 알림</span></li>
+        </ul>
+      </div>
+
+      <div class="arch-flow" aria-hidden="true"><i data-lucide="arrow-down"></i></div>
+
+      <div class="arch-server">
+        <p class="arch-server-t"><svg class="arch-mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>곁 판정 서버&nbsp;· FastAPI</p>
+        <ol class="arch-steps">
+          <li><span class="arch-n" aria-hidden="true">1</span><span class="arch-st"><b>글자 읽기(OCR)</b><span>개인정보 가리기</span></span></li>
+          <li><span class="arch-n" aria-hidden="true">2</span><span class="arch-st"><b>주장 구조화</b><span>대규모 언어 모델(LLM)&nbsp;· 정해진 형식</span></span></li>
+          <li><span class="arch-n" aria-hidden="true">3</span><span class="arch-st"><b>제품 식별&nbsp;· 근거 조회</b><span>DB&nbsp;· 규칙</span></span></li>
+          <li><span class="arch-n" aria-hidden="true">4</span><span class="arch-st"><b>비교 판정</b><span>대상&nbsp;· 효과&nbsp;· 강도</span></span></li>
+          <li><span class="arch-n" aria-hidden="true">5</span><span class="arch-st"><b>쉬운 설명</b><span>원문 인용</span></span></li>
+        </ol>
+        <p class="arch-more"><a href="#ai">단계마다 AI가 하는 일은 09에서 자세히 봐요</a></p>
+        <!-- 기호(&gt;, ≠)만으로 된 관계는 화면 읽기 프로그램이 건너뛸 수 있어서 문장(.sr-only)으로도 적어요 -->
+        <p class="arch-rule"><b><span aria-hidden="true">공식 데이터 &gt; 규칙 &gt; LLM</span><span class="sr-only">공식 데이터, 규칙, LLM 순서로 우선해요.</span></b><span>LLM은 확정된 결과를 뒤집지 못해요&nbsp;· <span class="arch-nb">근거는 원문에 있을&nbsp;때만&nbsp;·</span> <span class="arch-nb"><span aria-hidden="true">모름 ≠ 안전</span><span class="sr-only">모른다고 안전한 것은 아니에요</span></span></span></p>
+        <div class="arch-data">
+          <p class="arch-k">판정에 쓰는 데이터&nbsp;· 모델</p>
+          <ul class="arch-boxes">
+            <li><b>식품안전나라 OpenAPI</b><span>I0030 건강기능식품 품목신고&nbsp;· I2710 기능성&nbsp;· I1250 식품 품목제조보고 → 서버 DB 동기화</span></li>
+            <li><b>부당광고 표현 규칙 사전</b><span>식품표시광고법 기준</span></li>
+            <li><b>LLM API</b><span>평가셋에서 비용&nbsp;· 응답 시간&nbsp;· 정확도를 비교해 고름</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-flow" aria-hidden="true"><i data-lucide="arrow-down"></i></div>
+
+      <div class="arch-part">
+        <p class="arch-k">결과</p>
+        <ul class="arch-boxes arch-out">
+          <li><b>카톡 결과 카드</b><span>세 줄 요약&nbsp;· 선택지 3개</span></li>
+          <li><b>상세 웹</b><span>큰 글씨&nbsp;· 소리로 듣기</span></li>
+          <li><b>가족&nbsp;의견&nbsp;링크</b><span>본인이 눌렀을&nbsp;때만</span></li>
+          <li><b>알림</b><span>하루 뒤&nbsp;· 구매 후 날짜</span></li>
+        </ul>
+      </div>
+    </figure>
+
+    <div class="rule-strip">
+      <div class="card reveal"><h3><i data-lucide="shield-check"></i>개인정보는 덜 받고 빨리 지워요</h3><p>전화번호 등은 분석 전에 가려요. 원본 캡처는 분석 뒤 지우고 비교 결과만 남겨요.</p></div>
+      <div class="card reveal"><h3><i data-lucide="timer"></i>카톡 응답 시간 제한에 맞춰요</h3><p>먼저 “광고를 받았어요”&#8288;라고 답하고, 분석이 끝나면 결과 카드를 보여줘요.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AI ===================== -->
+<section id="ai" class="tone-white">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">09</span>AI 활용</span>
+      <h2 class="h-section"><span class="h-seg">AI는 사기 여부를 정하지 않아요.</span> <span class="h-seg">주장과 근거를 잇고 설명해요.</span></h2>
+      <p class="lead">핵심은 같은 단어가 아니라 같은 뜻인지 보는 일이에요. 광고와 식약처 원문을 대상&#8288;·효과&#8288;·강도로 나눠 맞대어 봐요.</p>
+    </div>
+
+    <figure class="cmp3 reveal" aria-labelledby="cmp3-cap">
+      <div class="cmp3-head">
+        <div class="cmp3-src cmp3-ad"><small><i data-lucide="megaphone"></i>광고</small><b>“연골이 다시 자라요”</b></div>
+        <div class="cmp3-src cmp3-gov"><small><i data-lucide="landmark"></i>식약처 원문</small><b>“관절 및 연골 건강에 도움을 줄&nbsp;수 있음”</b></div>
+      </div>
+      <ol class="cmp3-rows">
+        <li class="cmp3-same"><span class="cmp3-k">대상</span><span class="cmp3-a">연골</span><span class="cmp3-rel"><i data-lucide="equal"></i>같아요</span><span class="cmp3-b">관절&#8288;·연골 건강</span></li>
+        <li class="cmp3-diff"><span class="cmp3-k">효과</span><span class="cmp3-a">다시 자라요(재생)</span><span class="cmp3-rel"><i data-lucide="equal-not"></i>달라요</span><span class="cmp3-b">도움을 줄&nbsp;수 있음</span></li>
+        <li class="cmp3-diff"><span class="cmp3-k">강도</span><span class="cmp3-a">단정</span><span class="cmp3-rel"><i data-lucide="chevron-right"></i>더 세요</span><span class="cmp3-b">가능성</span></li>
+      </ol>
+      <figcaption id="cmp3-cap" class="cmp3-res"><span class="st st-over"><i data-lucide="arrow-up-right"></i>범위 초과</span><span>‘연골’&#8288;이 겹쳐도 효과와 강도가 인정된 범위를 넘어요. 키워드 검색으로는 가릴 수 없는 차이예요.</span></figcaption>
+    </figure>
+
+    <div class="pipeline">
+      <div class="pstep reveal">
+        <span class="pn">1</span>
+        <div><h3>읽기&nbsp;· 글자와 개인정보</h3><p>캡처에서 문구를 뽑고(OCR) 개인정보는 분석 전에 가려요. 이미지 AI(VLM)는 글자로 안 드러나는 요소에만 써요.</p><div class="tags"><span class="tag">OCR</span><span class="tag">선택적 VLM</span></div></div>
+        <details class="code-more"><summary>예시 보기</summary><pre class="code"><span class="c"># OCR 결과(일부)</span>
+"연골이 다시 자라요"
+"정형외과 의사 추천"
+"오늘만 70% 할인"
+"마디온 MSM 플러스"</pre></details>
+      </div>
+      <div class="pstep reveal">
+        <span class="pn">2</span>
+        <div><h3>구조화&nbsp;· 광고가 말하는 것</h3><p>LLM이 제품명&#8288;·원료와 효능 주장을 정해진 칸(JSON)에 뽑고, 주장은 광고 원문 그대로 인용해요.</p><div class="tags"><span class="tag">LLM</span><span class="tag">JSON 스키마</span></div></div>
+        <details class="code-more"><summary>예시 보기</summary><pre class="code">{
+  <span class="k">"product"</span>: <span class="s">"마디온 MSM 플러스"</span>,
+  <span class="k">"ingredients"</span>: [<span class="s">"MSM"</span>],
+  <span class="k">"claims"</span>: [{
+    <span class="k">"quote"</span>: <span class="s">"연골이 다시 자라요"</span>,
+    <span class="k">"target"</span>: <span class="s">"연골"</span>,
+    <span class="k">"effect"</span>: <span class="s">"재생"</span>,
+    <span class="k">"strength"</span>: <span class="s">"단정"</span>
+  }],
+  <span class="k">"signals"</span>: [<span class="s">"전문가 추천"</span>, <span class="s">"오늘만 할인"</span>]
+}</pre></details>
+      </div>
+      <div class="pstep reveal">
+        <span class="pn">3</span>
+        <div><h3>찾기&nbsp;· 제품과 공식 근거</h3><p>식품안전나라에서 제품과 인정 기능성 원문을 찾아요. 못 찾으면 효능은 ‘확인 불가’&#8288;로 두고, 부당광고 표현은 규칙 사전으로 따로 찾아요.</p><div class="tags"><span class="tag">I0030</span><span class="tag">I2710</span><span class="tag">I1250</span><span class="tag">규칙 사전</span></div></div>
+        <details class="code-more"><summary>예시 보기</summary><pre class="code"><span class="c"># 공식 원문</span>
+<span class="k">PRIMARY_FNCLTY</span>:
+  <span class="s">"관절 및 연골 건강에 도움을 줄 수 있음"</span>
+<span class="k">rule_hits</span>: [<span class="s">"의사 추천 형식"</span>]</pre></details>
+      </div>
+      <div class="pstep reveal">
+        <span class="pn">4</span>
+        <div><h3>비교&nbsp;· 같은 뜻인지</h3><p>위 그림처럼 대상&#8288;·효과&#8288;·강도로 맞대어 봐요. LLM이 든 근거는 원문에 실제로 있을&nbsp;때만 받아들여요.</p><div class="tags"><span class="tag">정규화</span><span class="tag">근거 대조</span></div></div>
+        <!-- 표시(✓ 같음 · ↗ 넘음)는 줄 맨 앞 두 칸 폭(.rt-mk)에 둬요. 글꼴 폭이나 화면 너비와 관계없이 한 세로줄에 서고, 좁은 화면에서도 잘리지 않아요. -->
+        <details class="code-more"><summary>예시 보기</summary><pre class="code rt-code-cols"><span class="rt-mk c">✓</span><span class="k">target</span>:   연골 = 관절·연골 건강
+<span class="rt-mk c">↗</span><span class="k">effect</span>:   재생 ≠ 도움
+<span class="rt-mk c">↗</span><span class="k">strength</span>: 단정 &gt; 가능성
+<span class="rt-mk"></span><span class="k">result</span>:   <span class="s">"범위 초과"</span></pre></details>
+      </div>
+      <div class="pstep reveal">
+        <span class="pn">5</span>
+        <div><h3>설명&nbsp;· 쉬운 말, 원문과 함께</h3><p>결과를 한 문장에 정보 하나씩 해요체로 바꾸고, 식약처 원문을 항상 같이 보여줘요.</p><div class="tags"><span class="tag">LLM</span><span class="tag">문체 규칙</span></div></div>
+        <details class="code-more"><summary>예시 보기</summary><pre class="code"><span class="s">"식약처에는 '도움을 줄 수 있음'이라고
+ 적혀 있어요. '다시 자란다'까지는
+ 인정되지 않았어요."</span></pre></details>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="state-table">
+        <thead><tr><th scope="col">단계</th><th scope="col">상태</th><th scope="col">사용자에게 하는 말</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">제품 식별</th><td data-label="상태">찾음 / 후보 여럿 / 못 찾음</td><td data-label="사용자에게 하는 말">못 찾으면 “제품 이름이나 포장이 보이는 화면을 캡처해 보내 주시면 다시 찾아볼게요”</td></tr>
+          <tr><th scope="row">근거 조회</th><td data-label="상태">가져옴 / 조회 실패</td><td data-label="사용자에게 하는 말">실패하면 “지금은 공식 자료를 불러오지 못했어요” (결과는 저장하지 않음)</td></tr>
+          <tr><th scope="row">주장과 근거</th><td data-label="상태">인정 범위 안 / 범위 초과 / 건강기능식품 아님 / 확인 불가</td><td data-label="사용자에게 하는 말">세 칸 비교와 차이 한 문장 (04의 네 유형)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 계획 ===================== -->
+<section id="plan" class="tone-paper">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">10</span>검증과 계획</span>
+      <h2 class="h-section"><span class="h-seg">구매를 줄였는지가 아니라,</span> <span class="h-seg">판단이 나아졌는지를 봐요</span></h2>
+      <p class="lead">곁의 핵심 가설은 ‘결론만 보여줄 때보다 근거를 함께 보여줄 때 더 잘 판단한다’예요.</p>
+    </div>
+
+    <div class="card score reveal">
+      <h3 class="ds-title"><i data-lucide="clipboard-check"></i>무엇을, 어떻게 재나요</h3>
+      <div class="table-wrap">
+        <table class="state-table score-table">
+          <thead><tr><th scope="col">구분</th><th scope="col">지표</th><th scope="col">측정 방법</th></tr></thead>
+          <tbody>
+            <tr class="score-group"><th scope="rowgroup" colspan="3"><i data-lucide="flask-conical"></i>기술 평가&nbsp;· 실제 광고 캡처 100건 이상의 평가셋</th></tr>
+            <tr><td data-label="구분"><span class="score-tag">기술</span></td><th scope="row">제품 식별률</th><td data-label="측정 방법">광고 속 제품을 식약처 기록에서 맞게 찾은 비율</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">기술</span></td><th scope="row">주장 추출 F1</th><td data-label="측정 방법">사람이 표시한 효능 주장과 비교해 빠짐없이, 정확하게 뽑았는지</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">기술</span></td><th scope="row">관계 판정 정확도</th><td data-label="측정 방법">사람이 붙인 주장–근거 관계와 맞는 비율. 범용 LLM 단독 방식과도 비교</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">기술</span></td><th scope="row">오탐률</th><td data-label="측정 방법">정상 광고를 문제 있다고 잘못 본 비율&nbsp;· 가장 엄격하게 관리</td></tr>
+            <tr class="score-group"><th scope="rowgroup" colspan="3"><i data-lucide="users-round"></i>사용자 평가&nbsp;· 고령 사용자 10명 내외, 2주 시범 사용</th></tr>
+            <tr class="score-key"><td data-label="구분"><span class="score-tag score-tag--key">핵심</span></td><th scope="row">구별 정확도</th><td data-label="측정 방법">정상&#8288;·과장&#8288;·확인 불가 광고 구별. 사용 전후, 그리고 ‘결론만’ 화면과 ‘근거 함께’ 화면 비교(서로 다른 광고 세트, 순서 교차)</td></tr>
+            <tr class="score-key"><td data-label="구분"><span class="score-tag score-tag--key">핵심</span></td><th scope="row">자기 말로 설명</th><td data-label="측정 방법">광고 주장과 공식 근거의 차이를 말로 설명하는지, 같은 두 화면에서 비교</td></tr>
+            <tr><td data-label="구분"><span class="score-tag score-tag--safe">안전</span></td><th scope="row"><span aria-hidden="true">확인 불가 ≠ 안전</span><span class="sr-only">확인 불가는 안전이 아님</span></th><td data-label="측정 방법">‘확인 불가’ 결과를 안전하다고 받아들인 비율</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">행동</span></td><th scope="row">자발적 확인</th><td data-label="측정 방법">안내 이후 스스로 광고를 보낸 기록(사용 로그)</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">행동</span></td><th scope="row">스스로 결정</th><td data-label="측정 방법">가족 도움 없이 다음 행동을 고른 비율</td></tr>
+            <tr><td data-label="구분"><span class="score-tag">사용성</span></td><th scope="row">SUS</th><td data-label="측정 방법">사용 편의 설문 점수</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:14px">팀원의 할머니 같은 초기 사용자와는 처음부터, 복지기관 등을 통해 모집할 분들과는 중반부터 화면을 함께 고쳐요.</p>
+    </div>
+
+    <div class="card reveal" style="margin-top:20px">
+      <h3 class="ds-title"><i data-lucide="route"></i>로드맵</h3>
+      <!-- 로드맵 카드 본문: 데스크톱(900px 이상)은 간트, 그보다 좁으면 세로 타임라인 -->
+      <div class="gantt">
+        <div class="gantt-top">
+          <p class="gantt-summary"><i data-lucide="calendar-range"></i><span>「모두의 AI 실험실」에 선정되면 10.14부터 12.11까지 8주 동안, 가장 불확실한 것부터 검증해요.<span class="gantt-wide"> 맨 윗줄이 그 주에 답할 질문이에요.</span></span></p>
+          <ul class="gantt-legend" aria-label="막대 종류 안내">
+            <li><span class="gantt-sw gantt-sw--build" aria-hidden="true"></span>만들기</li>
+            <li><span class="gantt-sw gantt-sw--prep" aria-hidden="true"></span>준비&#8288;·다듬기</li>
+            <li><span class="gantt-sw gantt-sw--check" aria-hidden="true"></span>데이터&#8288;·검증</li>
+            <li><span class="gantt-sw gantt-sw--mentor" aria-hidden="true"></span>멘토링</li>
+          </ul>
+        </div>
+
+        <!-- 데스크톱: 간트 차트 -->
+        <div class="gantt-chart">
+          <table class="gantt-table">
+            <caption class="sr-only">8주 로드맵 간트 차트. 선정되면 10월 14일부터 12월 11일까지, 작업 갈래별로 진행할 주를 보여줘요.</caption>
+            <colgroup>
+              <col class="gantt-col-label">
+              <col><col class="gantt-col-alt"><col><col class="gantt-col-alt"><col><col class="gantt-col-alt"><col><col class="gantt-col-alt">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" class="gantt-corner">작업</th>
+                <th scope="col"><span class="gantt-wk">1주</span><span class="gantt-day">10.14</span></th>
+                <th scope="col"><span class="gantt-wk">2주</span><span class="gantt-day">10.21</span></th>
+                <th scope="col"><span class="gantt-wk">3주</span><span class="gantt-day">10.28</span></th>
+                <th scope="col"><span class="gantt-wk">4주</span><span class="gantt-day">11.4</span></th>
+                <th scope="col"><span class="gantt-wk">5주</span><span class="gantt-day">11.11</span></th>
+                <th scope="col"><span class="gantt-wk">6주</span><span class="gantt-day">11.18</span></th>
+                <th scope="col"><span class="gantt-wk">7주</span><span class="gantt-day">11.25</span></th>
+                <th scope="col"><span class="gantt-wk">8주</span><span class="gantt-day">12.2~</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="gantt-ms">
+                <th scope="row"><span class="gantt-trk"><i data-lucide="flag"></i>주요 일정</span></th>
+                <td colspan="8">
+                  <div class="gantt-ms-track">
+                    <span class="gantt-flag gantt-flag--d14">10.14 선정 발표</span>
+                    <span class="gantt-flag gantt-flag--d16">10.16 사업설명회(선정 시)</span>
+                    <span class="gantt-flag gantt-flag--end">12.11 수행 마무리 예정</span>
+                    <span class="gantt-flag gantt-flag--end gantt-flag--after">12월 중순 성과공유회 예정</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="circle-help"></i>검증할 질문</span></th>
+                <td colspan="2"><div class="gantt-bar gantt-bar--q"><span class="sr-only">1~2주 질문: </span><span>제품을 찾을 수 있나?<br>카톡으로 보낼 수 있나?</span></div></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--q"><span class="sr-only">3~4주 질문: </span>관계 판정이 맞나?</div></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--q"><span class="sr-only">5~6주 질문: </span>근거가 판단을 돕나?</div></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--q"><span class="sr-only">7~8주 질문: </span>스스로 쓰나?</div></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="database"></i>데이터&#8288;·평가셋</span></th>
+                <td colspan="2"><div class="gantt-bar gantt-bar--check"><span class="sr-only">데이터·검증: </span>식품안전나라 데이터&nbsp;동기화&nbsp;· 실제&nbsp;광고 100건&nbsp;수집</div></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--check"><span class="sr-only">데이터·검증: </span>평가셋 라벨링&nbsp;· 1차&nbsp;측정</div></td>
+                <td></td><td></td><td></td><td></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="scale"></i>판정&nbsp;엔진</span></th>
+                <td></td><td></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--build"><span class="sr-only">만들기: </span><span><b>v1</b> 주장&nbsp;추출&nbsp;· 제품&nbsp;식별&nbsp;· 비교</span></div></td>
+                <td colspan="4"><div class="gantt-bar gantt-bar--prep"><span class="sr-only">준비·다듬기: </span><span><b>개선</b> 평가 결과 반영&nbsp;· 오탐 줄이기</span></div></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="link"></i><span>카톡&#8288;·웹&#8288;·<wbr>가족&nbsp;링크</span></span></th>
+                <td colspan="2"><div class="gantt-bar gantt-bar--prep"><span class="sr-only">준비·다듬기: </span>채널&nbsp;개설&nbsp;· 이미지&nbsp;전달 실기기&nbsp;확인</div></td>
+                <td></td><td></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--build"><span class="sr-only">만들기: </span>챗봇&nbsp;· 결과&nbsp;웹&nbsp;· 가족&nbsp;링크</div></td>
+                <td></td><td></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="smartphone"></i><span>Android 경량&nbsp;앱</span></span></th>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--build"><span class="sr-only">만들기: </span>공유하기 입력&nbsp;· 알림 (테스트&nbsp;앱 내부&nbsp;배포)</div></td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="gantt-trk"><i data-lucide="users-round"></i>사용자 테스트</span></th>
+                <td colspan="2"><div class="gantt-bar gantt-bar--check"><span class="sr-only">데이터·검증: </span>간이 시제품으로 카톡 전송 확인</div></td>
+                <td></td><td></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--check"><span class="sr-only">데이터·검증: </span><span>결론만 vs 근거 함께<br>화면 비교 테스트</span></div></td>
+                <td colspan="2"><div class="gantt-bar gantt-bar--check"><span class="sr-only">데이터·검증: </span>시범&nbsp;운영&nbsp;· 성능&nbsp;리포트</div></td>
+              </tr>
+              <tr class="gantt-mentor">
+                <th scope="row"><span class="gantt-trk"><i data-lucide="graduation-cap"></i>멘토링</span></th>
+                <td colspan="8"><div class="gantt-bar gantt-bar--mentor"><span class="sr-only">멘토링: </span>8주 내내&nbsp;· 경량 Android&nbsp;앱의 알림&#8288;·권한 처리와 배포는 멘토링으로 보완</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 900px 미만: 기존 세로 타임라인 -->
+        <div class="timeline gantt-phone">
+          <div class="tl"><span class="when">10.14</span><span class="dot"><span></span></span><div><h4>착수 (선정 시)</h4><p>10.16 사업설명회, 멘토링 계획 세우기 (멘토링은 8주 내내)</p></div></div>
+          <div class="tl"><span class="when">1~2주</span><span class="dot"><span></span></span><div><h4>제품을 찾을 수 있나? 카톡으로 보낼 수 있나?</h4><p>식품안전나라 데이터 동기화, 실제 광고 100건 수집, 카카오톡 채널 개설. 사람이 결과를 대신 만드는 간이 시제품으로 할머니 등 초기 사용자가 도움 없이 캡처를 보낼 수 있는지 확인</p></div></div>
+          <div class="tl"><span class="when">3~4주</span><span class="dot"><span></span></span><div><h4>관계 판정이 맞나?</h4><p>판정 엔진 v1(주장 추출&#8288;·제품 식별&#8288;·비교), 평가셋 라벨링과 1차 성능 측정</p></div></div>
+          <div class="tl"><span class="when">5~6주</span><span class="dot"><span></span></span><div><h4>근거가 판단을 돕나?</h4><p>카톡 챗봇&#8288;·결과 웹&#8288;·가족 링크. 복지기관 등을 통해 모집할 고령 사용자와 ‘결론만’ 화면과 ‘근거 함께’ 화면 비교, 결과 반영과 판정&nbsp;엔진 개선</p></div></div>
+          <div class="tl"><span class="when">7~8주</span><span class="dot"><span></span></span><div><h4>스스로 쓰나?</h4><p>경량 Android 앱(공유하기 입력과 알림, 테스트 앱 내부 배포), 2주 시범 운영</p></div></div>
+          <div class="tl"><span class="when">12.11</span><span class="dot"><span></span></span><div><h4>마무리 예정</h4><p>시범 운영 결과와 성능 리포트 정리, 성과공유회는 12월 중순 예정</p></div></div>
+        </div>
+
+        <!-- 공통: 이후 -->
+        <div class="gantt-after">
+          <p class="gantt-after-label"><span class="gantt-after-tag"><i data-lucide="circle-arrow-right"></i>이후</span><b>고도화</b></p>
+          <ul class="gantt-after-list">
+            <li><i data-lucide="smartphone"></i><span>Android&nbsp;앱 중심으로 개인정보를 휴대폰 안에서 처리(온디바이스)</span></li>
+            <li><i data-lucide="layers-plus"></i><span>무료체험&#8288;·정기결제와 통신 상품 광고로 확장</span></li>
+            <li><i data-lucide="handshake"></i><span>AI디지털배움터&#8288;·복지관 교육의 광고 확인 실습 도구, 통신사&#8288;·금융사 고령자 보호 서비스와 API 연계</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 팀 ===================== -->
+<!-- 역할 그림은 사람 얼굴 대신 맡은 일을 보여줘요. -->
+<section id="team" class="tone-white">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="num">11</span>팀</span>
+      <h2 class="h-section"><span class="h-seg">할머니 곁에서, 복지 현장에서</span> <span class="h-seg">문제를 본 두 사람이 만들어요</span></h2>
+      <p class="lead">데이터사이언스를 전공하며 데이터와 AI를 다뤄 왔어요. 모델 성능만큼 사용자가 결과를 이해하고 실제로 쓰게 하는 일이 중요하다는 걸 배웠어요. 그래서 AI 파이프라인과 서비스 구현을 나눠 맡되, 두 역할 모두 고령 사용자 검증으로 이어지게 해요.</p>
+    </div>
+
+    <div class="ba-team">
+      <article class="card ba-role reveal">
+        <div class="ba-role-head">
+          <svg class="ba-role-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#il-team-ai"/></svg>
+          <div class="ba-role-name">
+            <h3>AI 파이프라인</h3>
+            <ul class="ba-role-tags" aria-label="맡은 일"><li>주장 추출</li><li>근거 비교</li><li>설명 생성</li><li>데이터 연동</li><li>평가</li></ul>
+          </div>
+        </div>
+        <ul class="ba-role-list">
+          <li>멀티모달 비디오 검색 서비스 구현 (장면 분할, 음성 전사, 임베딩, VLM 리랭킹, FastAPI&#8288;·<wbr>Next.js&#8288;·<wbr>PostgreSQL)</li>
+          <li>전시 안내로봇 길안내 앱 개발, 현장 사용자 86명 대상 SUS&#8288;·NPS&#8288;·CSAT와 이용 로그 분석</li>
+          <li>곁에서는 주장 추출&#8288;·근거 비교&#8288;·설명 생성, 식품안전나라 데이터 연동과 평가셋 구축을 맡아요</li>
+        </ul>
+      </article>
+
+      <article class="card ba-role reveal">
+        <div class="ba-role-head">
+          <svg class="ba-role-art" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><use href="#il-team-backend"/></svg>
+          <div class="ba-role-name">
+            <h3>서비스 구현&nbsp;· 현장</h3>
+            <ul class="ba-role-tags" aria-label="맡은 일"><li>Android 앱</li><li>웹</li><li>챗봇</li><li>판정 서버</li></ul>
+          </div>
+        </div>
+        <ul class="ba-role-list">
+          <li>Android 앱과 React 기반 웹 프론트엔드 구현 경험</li>
+          <li>봉사단 단장으로 복지기관에서 어르신 스마트폰 교육 진행</li>
+          <li>곁에서 경량 Android&nbsp;앱, 결과&#8288;·가족&nbsp;공유&nbsp;웹, 카카오톡 챗봇 스킬 서버와 FastAPI 서버 담당</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="ba-together reveal">
+      <h3 class="ba-together-title"><svg class="ba-glyph" viewBox="7 12 26 20" aria-hidden="true" focusable="false"><circle cx="15" cy="17" r="4.5"/><circle cx="25.5" cy="17" r="4.5"/><path d="M9 29h22"/></svg>함께 일하는 방식</h3>
+      <ul class="ba-together-list">
+        <li>
+          <span class="ba-together-ic" aria-hidden="true"><i data-lucide="server"></i></span>
+          <div><h4>판정 서버 하나에서 만나요</h4><p>AI 파이프라인은 팀원이 만든 판정 서버 안에서 돌아가요.</p></div>
+        </li>
+        <li>
+          <span class="ba-together-ic" aria-hidden="true"><i data-lucide="users-round"></i></span>
+          <div><h4>고령 사용자와 같이 확인해요</h4><p>할머니 같은 초기 사용자, 그리고 교육 봉사 경험을 살려 모집할 어르신과 함께 테스트하고 그 결과를 문구와 화면에 반영해요.</p></div>
+        </li>
+        <li>
+          <span class="ba-together-ic" aria-hidden="true"><i data-lucide="smartphone"></i></span>
+          <div><h4>Android는 경험 있는 팀원이 맡아요</h4><p>앱 구현 경험을 바탕으로 만들고, 실제 배포처럼 처음 해 보는 일은 전문가 조언을 받아 보완해요.</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== 푸터 · 마무리 ===================== -->
+<footer class="ba-footer">
+  <div class="ba-cta">
+    <div class="wrap ba-cta-inner">
+      <div class="ba-cta-copy reveal">
+        <p class="ba-cta-brand"><svg class="ba-cta-mark" aria-hidden="true" focusable="false"><use href="#mark"/></svg>곁 <span lang="en">GYEOT</span></p>
+        <p class="ba-slogan"><span>AI가 대신 결정하지&nbsp;않아요.</span> <span><em>스스로 판단할&nbsp;수 있도록</em> 곁에서&nbsp;도와요.</span></p>
+        <div class="ba-cta-actions">
+          <a class="btn btn-primary" href="#demo"><i data-lucide="play"></i>사용 흐름 다시 보기</a>
+          <a class="btn btn-ghost" href="#architecture"><i data-lucide="network"></i>서비스 구조 보기</a>
+        </div>
+      </div>
+      <div class="ba-cta-art reveal" aria-hidden="true">
+        <svg class="ba-scene" viewBox="0 0 640 400" focusable="false"><use href="#il-scene"/></svg>
+        <p class="ba-cta-cap">그림 속 인물은 가상이에요.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ba-fine">
+    <p>이 페이지는 AI 소비 동행 서비스 곁(GYEOT)을 소개합니다. 곁은 「모두의 AI 실험실」 AI 서비스 개발 프로젝트에 지원한 기획 단계의 서비스로, 아직 운영하고 있지 않습니다. 페이지의 모든 화면은 이해를 돕기 위한 예시이며, 제품명&#8288;·인물&#8288;·채널명과 주소(gyeot.example)는 가상입니다.</p>
+    <p>곁은 식품의약품안전처&#8288;·식품안전나라와 관련이 없는 민간 서비스입니다. 기능성 원문은 식품안전나라(식품의약품안전처) OpenAPI 공공데이터를 활용하며, 조회 시점 기준으로 표시합니다.</p>
+    <p>카카오톡은 (주)&#8288;카카오의 상표이며, 곁과 이 페이지는 카카오와 관련이 없습니다. 화면 예시에는 카카오의 로고와 공식 색상을 사용하지 않았습니다.</p>
+    <p>통계&#8288;·제도 출처: 과기정통부&#8288;·NIA, 2025 디지털정보격차 실태조사(2026.3 발표) / 식약처 국정감사 제출자료(남인순 의원 보도, 2026.9) / 식약처 국회 제출자료(경향신문 보도, 2026.10.4) / 행정안전부, 주민등록 인구통계(2024.12.23) / 정책브리핑, 디지털포용법 시행(2026.1.22) / <span class="hx-nw">식품표시광고법&#8288;·약사법</span> 개정(약사공론 보도 2026.5.26, 2026.11.27 시행) / 일반식품 기능성 표시제(2020.12.29 시행) / 전자상거래법 제17조(청약철회)&#8288;·1372 소비자상담센터 / 식품안전나라 OpenAPI(I0030&#8288;·I2710&#8288;·I1250)</p>
+    <p>곁은 의학적 조언이나 법률 자문을 제공하지 않습니다. 건강 상태나 복용 중인 약에 관한 판단은 의사&#8288;·약사와 상의하시기 바랍니다.</p>
+  </div>
+</footer>
+
+<!-- main.js를 먼저 실행해요. 아이콘 묶음(CDN)이 늦거나 멈춰도 등장 효과·내비·사용 흐름 레일은 바로 움직이고, 아이콘은 도착하면 그려져요.
+     <i data-lucide> 자리는 크기가 미리 잡혀 있어 아이콘이 그려져도 글이 밀리지 않아요.
+     main.js가 끝까지 돌아야 html의 no-js가 떨어져 등장 효과와 단계 알약·‹ ›가 켜져요 (못 받으면 모든 내용이 그대로 보여요). -->
+<script src="main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@1.52.0/dist/umd/lucide.min.js" async onload="window.lucide &amp;&amp; lucide.createIcons()"></script>
+</body>
+</html>
